@@ -5,15 +5,15 @@
 /******************
  * The Node Class *
  ******************/
-typedef struct{
+struct Node{
   int item;
   struct Node * pre;
   struct Node * next;
-}Node;
+};
 
 
-Node* new_empty_Node(){
-  Node *newNode = (Node *)malloc(sizeof(Node));
+struct Node* new_empty_Node(){
+  struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
   newNode-> item = 0;
   newNode-> pre = NULL;
   newNode-> next = NULL;
@@ -21,8 +21,8 @@ Node* new_empty_Node(){
   return newNode;
 }
 
-Node* new_Node(int item){
-  Node *newNode = (Node*)malloc(sizeof(Node));
+struct Node* new_Node(int item){
+  struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
   newNode->item = item;
   newNode->pre = NULL;
   newNode->next = NULL;
@@ -34,7 +34,7 @@ Node* new_Node(int item){
  * RunQ Class ***
  ****************/
 typedef struct{
-  Node *head;
+ struct  Node *head;
 }RunQ;
 
 RunQ *new_RunQ(){
@@ -42,18 +42,18 @@ RunQ *new_RunQ(){
   newRunQ-> head = NULL;
   return newRunQ;
 }
-void InitQ(Node* head){
+void InitQ(struct Node* head){
   if(head == NULL){
     head = new_Node(0); 
   }
 }
 
-void AddQ(Node* head, int *item){
+void AddQ(struct Node* head, int *item){
   if(head == NULL){
     head = new_Node(*item);
   }
   else if(head->pre != NULL){
-    Node *temp = head->pre;
+    struct Node *temp = head->pre;
     head->pre = new_Node(*item);
     head->pre->next = head;
     head->pre->pre = temp;
@@ -66,6 +66,7 @@ void AddQ(Node* head, int *item){
     head->pre->pre = head;
   }
 }
+
 int main(int argc, char**argv){
 
   return 0;
