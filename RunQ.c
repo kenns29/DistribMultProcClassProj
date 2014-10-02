@@ -89,6 +89,12 @@ struct Node* DelQ(struct Node * head){
 
   return temp;
 }
+
+void RotateQ(struct Node *head){
+  if(head->next != NULL && head->pre != NULL){
+    head = head->next;
+  }
+}
 int main(int argc, char**argv){
 
   return 0;
