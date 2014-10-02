@@ -67,6 +67,28 @@ void AddQ(struct Node* head, int *item){
   }
 }
 
+struct Node* DelQ(struct Node * head){
+  struct Node *temp = NULL;
+  if(head->pre == NULL && head->next == NULL){
+    temp = head;
+    head->pre = head->next = NULL;
+  }
+  else if(head->pre == head-> next){
+    temp = head;
+    head = head->next;
+    head->pre = head->next = NULL;
+   
+  }
+  else{
+    temp = head;
+    head = head->next;
+    head->pre = temp->pre;
+    temp->pre->next = head;
+    temp->next = temp->pre = NULL;
+  }
+
+  return temp;
+}
 int main(int argc, char**argv){
 
   return 0;
