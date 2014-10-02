@@ -1,0 +1,46 @@
+#include <stdlib.h>
+#include <math.h>
+#include <stdio.h>
+
+****************
+ * RunQ Class ***
+ ****************/
+typedef struct{
+  int item;
+  struct RunQ * pre;
+  struct RunQ * next;
+}RunQ;
+
+
+Node* new_empty_Node(){
+  RunQ *newNode = (RunQ *)malloc(sizeof(Node));
+  newNode-> item = 0;
+  newNode-> pre = NULL;
+  newNode-> next = NULL;
+  
+  return newNode;
+}
+
+Node* new_Node(int item){
+  Node *newNode = (Node*)malloc(sizeof(Node));
+  newNode->item = item;
+  newNode->pre = NULL;
+  newNode->next = NULL;
+
+  return newNode;
+}
+
+
+void InitQ(Node* head){
+  if(head == NULL){
+    head = new_Node(0); 
+  }
+}
+
+void AddQ(Node* head, int *item){
+  
+}
+int main(int argc, char**argv){
+
+  return 0;
+}
