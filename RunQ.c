@@ -35,14 +35,11 @@ Node* new_Node(int item){
  ****************/
 typedef struct{
   Node *head;
-  Node *tail;
 }RunQ;
 
 RunQ *new_RunQ(){
   RunQ *newRunQ = (RunQ*)malloc(sizeof(RunQ));
   newRunQ-> head = NULL;
-  newRunQ-> tail = NULL;
-
   return newRunQ;
 }
 void InitQ(Node* head){
@@ -52,7 +49,22 @@ void InitQ(Node* head){
 }
 
 void AddQ(Node* head, int *item){
-  
+  if(head == NULL){
+    head = new_Node(*item);
+  }
+  else if(head->pre != NULL){
+    Node *temp = head->pre;
+    head->pre = new_Node(*item);
+    head->pre->next = head;
+    head->pre->pre = temp;
+    temp->next = head->pre;
+  }
+  else{
+    head->pre = new_Node(*item);
+    head->pre->next = head;
+    head->next = head->pre;
+    head->pre->pre = head;
+  }
 }
 int main(int argc, char**argv){
 
