@@ -10,6 +10,7 @@ void *function1();
 void *function2();
 void *function3();
 
+int global = 1;
 int main(int argc, char **argv){
   start_thread((void*)function1);
   start_thread((void*)function2);
@@ -20,24 +21,45 @@ int main(int argc, char **argv){
 }
 
 void *function1(){
+  int local = 1;
   while(TRUE){
     printf("In thread 1\n");
+    printf("\t the global value = %d\n", global++);
+    printf("\t increment global value by one\n");
+    printf("\t -----------------------------\n");
+    printf("\t the local value = %d\n", local++);
+    printf("\t increment local value by one\n");
+    printf("#############################################\n");
     usleep(1000000);
     yield();
   }
 }
 
-void *function2(){
+void *function2(){  
+  int local = 1;
   while(TRUE){
     printf("In thread 2\n");
+    printf("\t the global value = %d\n", global++);
+    printf("\t increment global value by one\n");
+    printf("\t -----------------------------\n");
+    printf("\t the local value = %d\n", local++);
+    printf("\t increment local value by one\n");
+    printf("#############################################\n");
     usleep(1000000);
     yield();
   }
 }
 
 void *function3(){
+  int local = 1;
   while(TRUE){
     printf("In thread 3\n");
+    printf("\t the global value = %d\n", global++);
+    printf("\t increment global value by one\n");
+    printf("\t -----------------------------\n");
+    printf("\t the local value  = %d\n", local++);
+    printf("\t increment local value by one\n");
+    printf("#############################################\n");
     usleep(1000000);
     yield();
   }
