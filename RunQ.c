@@ -104,4 +104,11 @@ void iterateQ(struct Node *head, int n){
   } 
 }
 
-
+int main(int argc, char **argv){
+  RunQ *runQ = new_RunQ();
+  int i = 0;
+  for(i=0;i < 10; i++){
+    AddQ(&runQ->head, i);
+  }
+  iterateQ(runQ->head, 37);
+}
