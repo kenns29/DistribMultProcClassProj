@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
+#define FALSE 0
+#define TRUE 1
 #include "threads.h"
 
 void *function1();
@@ -17,16 +20,25 @@ int main(int argc, char **argv){
 }
 
 void *function1(){
-  printf("In thread 1\n");
-  yield();
+  while(TRUE){
+    printf("In thread 1\n");
+    yield();
+    usleep(1000000);
+  }
 }
 
 void *function2(){
-  printf("In thread 2\n");
-  yield();
+  while(TRUE){
+    printf("In thread 2\n");
+    yield();
+    usleep(1000000);
+  }
 }
 
 void *function3(){
-  printf("In thread 3\n");
-  yield();
+  while(TRUE){
+    printf("In thread 3\n");
+    yield();
+    usleep(1000000);
+  }
 }

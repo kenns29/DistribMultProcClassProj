@@ -107,8 +107,13 @@ void iterateQ(struct Node *head, int n){
 int main(int argc, char **argv){
   RunQ *runQ = new_RunQ();
   int i = 0;
-  for(i=0;i < 10; i++){
+  for(i=0;i < 3; i++){
     AddQ(&runQ->head, i);
   }
-  iterateQ(runQ->head, 37);
+  iterateQ(runQ->head, 10);
+  for(i = 0; i < 7; i++){
+    RotateQ(&runQ->head);
+  }
+  printf("After Rotation\n");
+  iterateQ(runQ->head, 10);
 }
