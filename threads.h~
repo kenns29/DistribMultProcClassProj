@@ -1,0 +1,22 @@
+#include "q.h"
+
+const size_t STACK_SIZE = 8192;
+TCB_t *runQ;
+
+void start_thread(TCB_t * head, void (*function)(void)){
+  void *stack = malloc(STACK_SIZE);
+  TCB_t *tcb = new_TCB();
+  init_TCB(tcb, function, stack, STACK_SIZE); 
+  AddQ(&head, tcb);
+}
+
+void run(TCB_t *head){
+  ucontext_t parent;
+  getcontext(&parent);
+  swapcontext(&parent, &(head->context));
+}
+
+void yield(TCB_t *head){
+  RotateQ(&head);
+  swapcontext(&(head->pre->context), &(head->context));
+}
