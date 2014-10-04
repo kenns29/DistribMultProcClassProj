@@ -22,23 +22,23 @@ int main(int argc, char **argv){
 void *function1(){
   while(TRUE){
     printf("In thread 1\n");
-    yield();
     usleep(1000000);
+    yield();
   }
 }
 
 void *function2(){
   while(TRUE){
     printf("In thread 2\n");
-    yield();
     usleep(1000000);
+    yield();
   }
 }
 
 void *function3(){
   while(TRUE){
     printf("In thread 3\n");
-    yield();
     usleep(1000000);
+    yield();
   }
 }
