@@ -1,3 +1,8 @@
+/* *****************
+ * Homework 1      *
+ * Hong Xiang Wang *
+ * Lei Chen        *
+ *******************/
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -6,12 +11,14 @@
 #define TRUE 1
 #include "threads.h"
 
+extern TCB_t *runQ;
 void *function1();
 void *function2();
 void *function3();
 
 int global = 1;
 int main(int argc, char **argv){
+  InitQ(&runQ);
   start_thread((void*)function1);
   start_thread((void*)function2);
   start_thread((void*)function3);

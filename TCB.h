@@ -23,4 +23,5 @@ TCB_t *new_TCB(){
   TCB_t *tcb = (TCB_t*)malloc(sizeof(TCB_t));
   tcb->next = NULL;
   tcb->pre = NULL;
+  return tcb;
 }
