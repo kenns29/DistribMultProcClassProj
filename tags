@@ -1,0 +1,49 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AddQ	RunQ.c	/^void AddQ(struct Node** head, int item){$/;"	f
+AddQ	q.h	/^void AddQ(TCB_t ** head, TCB_t *item){$/;"	f
+DelQ	RunQ.c	/^struct Node* DelQ(struct Node ** head){$/;"	f
+DelQ	q.h	/^TCB_t* DelQ(TCB_t ** head){$/;"	f
+FALSE	thread_test.c	10;"	d	file:
+InitQ	RunQ.c	/^void InitQ(struct Node** head){$/;"	f
+InitQ	q.h	/^void InitQ(TCB_t ** head){$/;"	f
+Node	RunQ.c	/^struct Node{$/;"	s	file:
+RUNQ	q.h	3;"	d
+RotateQ	RunQ.c	/^void RotateQ(struct Node **head){$/;"	f
+RotateQ	q.h	/^void RotateQ(TCB_t **head){$/;"	f
+RunQ	RunQ.c	/^}RunQ;$/;"	t	typeref:struct:__anon1	file:
+RunQ	q.h	/^}RunQ;$/;"	t	typeref:struct:__anon2
+STACK_SIZE	threads.h	/^const size_t STACK_SIZE = 8192;$/;"	v
+TCB	TCB.h	/^typedef struct TCB{$/;"	s
+TCB_HEADER	TCB.h	2;"	d
+TCB_t	TCB.h	/^}TCB_t;$/;"	t	typeref:struct:TCB
+TRUE	thread_test.c	11;"	d	file:
+context	TCB.h	/^  ucontext_t context;$/;"	m	struct:TCB
+function1	thread_test.c	/^void *function1(){$/;"	f
+function2	thread_test.c	/^void *function2(){  $/;"	f
+function3	thread_test.c	/^void *function3(){$/;"	f
+global	thread_test.c	/^int global = 1;$/;"	v
+head	RunQ.c	/^ struct  Node *head;$/;"	m	struct:__anon1	typeref:struct:__anon1::Node	file:
+head	q.h	/^ struct  TCB_t *head;$/;"	m	struct:__anon2	typeref:struct:__anon2::TCB_t
+init_TCB	TCB.h	/^void init_TCB(TCB_t *tcb, void *function, void *stackP, int stack_size){$/;"	f
+item	RunQ.c	/^  int item;$/;"	m	struct:Node	file:
+iterateQ	RunQ.c	/^void iterateQ(struct Node *head, int n){$/;"	f
+main	RunQ.c	/^int main(int argc, char **argv){$/;"	f
+main	thread_test.c	/^int main(int argc, char **argv){$/;"	f
+new_Node	RunQ.c	/^struct Node* new_Node(int item){$/;"	f
+new_RunQ	RunQ.c	/^RunQ *new_RunQ(){$/;"	f
+new_RunQ	q.h	/^RunQ *new_RunQ(){$/;"	f
+new_TCB	TCB.h	/^TCB_t *new_TCB(){$/;"	f
+new_empty_Node	RunQ.c	/^struct Node* new_empty_Node(){$/;"	f
+next	RunQ.c	/^  struct Node * next;$/;"	m	struct:Node	typeref:struct:Node::Node	file:
+next	TCB.h	/^  struct TCB *next;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+pre	RunQ.c	/^  struct Node * pre;$/;"	m	struct:Node	typeref:struct:Node::Node	file:
+pre	TCB.h	/^  struct TCB *pre;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+run	threads.h	/^void run(){$/;"	f
+runQ	threads.h	/^TCB_t *runQ;$/;"	v
+start_thread	threads.h	/^void start_thread(void (*function)(void)){$/;"	f
+yield	threads.h	/^void yield(){$/;"	f

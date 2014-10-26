@@ -19,9 +19,9 @@ void init_TCB(TCB_t *tcb, void *function, void *stackP, int stack_size){
   makecontext(&tcb->context, function, 0);
 }
 
-TCB_t *new_TCB(){
-  TCB_t *tcb = (TCB_t*)malloc(sizeof(TCB_t));
-  tcb->next = NULL;
-  tcb->pre = NULL;
-  return tcb;
-}
+//TCB_t *new_TCB(){
+//  TCB_t *tcb = (TCB_t*)malloc(sizeof(TCB_t));
+//  tcb->next = NULL;
+//  tcb->pre = NULL;
+//  return tcb;
+//}

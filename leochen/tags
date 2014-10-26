@@ -1,0 +1,67 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AddQ	q.h	/^void AddQ(TCB_t** head, TCB_t* item) {$/;"	f
+BUFFER_SIZE	producer_consumer_test.c	5;"	d	file:
+BUFFER_SIZE	read_write.c	5;"	d	file:
+CreateSem	sem.h	/^Sem_t* CreateSem(int value) {$/;"	f
+DelQ	q.h	/^TCB_t* DelQ(TCB_t** head, int force) {$/;"	f
+InitQ	q.h	/^void InitQ (TCB_t** head) {$/;"	f
+P	sem.h	/^void P(Sem_t* sem)  {$/;"	f
+PrintQ	q.h	/^void PrintQ(TCB_t **head) {$/;"	f
+RotateQ	q.h	/^void RotateQ(TCB_t** head)  {$/;"	f
+RunQ	threads.h	/^TCB_t* RunQ;$/;"	v
+STACK_SIZE	q.h	4;"	d
+Sem_t	sem.h	/^} Sem_t;$/;"	t	typeref:struct:Semaphore
+Semaphore	sem.h	/^typedef struct Semaphore {$/;"	s
+TCB	TCB.h	/^typedef struct TCB {$/;"	s
+TCB_t	TCB.h	/^} TCB_t;$/;"	t	typeref:struct:TCB
+TestQ	q.h	/^void TestQ() {$/;"	f
+V	sem.h	/^void V(Sem_t * sem)  {$/;"	f
+_TCB_H_	TCB.h	2;"	d
+buff	producer_consumer_test.c	/^int buff[BUFFER_SIZE] = {0};$/;"	v
+buff	read_write.c	/^int buff;$/;"	v
+consumerFunc	producer_consumer_test.c	/^void consumerFunc() {$/;"	f
+context	TCB.h	/^    ucontext_t context;$/;"	m	struct:TCB
+count	sem.h	/^    int count;$/;"	m	struct:Semaphore
+empty	producer_consumer_test.c	/^Sem_t* empty;$/;"	v
+full	producer_consumer_test.c	/^Sem_t* full;$/;"	v
+func1	user_threads_test.c	/^void func1() {$/;"	f
+func2	user_threads_test.c	/^void func2() {$/;"	f
+func3	user_threads_test.c	/^void func3() {$/;"	f
+gid	producer_consumer_test.c	/^int gid = 0;$/;"	v
+global	user_threads_test.c	/^int global = 0;$/;"	v
+in	producer_consumer_test.c	/^int in;$/;"	v
+inc	read_write.c	/^int inc = 0;$/;"	v
+init_TCB	TCB.h	/^void init_TCB (TCB_t *tcb, void *function, void *stackP, int stack_size)$/;"	f
+item	producer_consumer_test.c	/^int item = 0;$/;"	v
+main	producer_consumer_test.c	/^int main(int argc, char** argv) {$/;"	f
+main	read_write.c	/^int main(int argc, char** argv) {$/;"	f
+main	user_threads_test.c	/^int main(int argc, char** argv) {$/;"	f
+mutex	producer_consumer_test.c	/^Sem_t* mutex;$/;"	v
+mutex	read_write.c	/^Sem_t* mutex;$/;"	v
+next	TCB.h	/^    struct TCB* next;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+out	producer_consumer_test.c	/^int out;$/;"	v
+prev	TCB.h	/^    struct TCB* prev;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+producerFunc	producer_consumer_test.c	/^void producerFunc() {$/;"	f
+q	sem.h	/^    TCB_t* q;$/;"	m	struct:Semaphore
+rc	read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+reader_entry	read_write.c	/^void reader_entry() {$/;"	f
+reader_exit	read_write.c	/^void reader_exit() {$/;"	f
+reader_func	read_write.c	/^void reader_func() {$/;"	f
+rid	read_write.c	/^int rid = 0;$/;"	v
+rsem	read_write.c	/^Sem_t* rsem;$/;"	v
+run	threads.h	/^void run() {$/;"	f
+rwc	read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+start_thread	threads.h	/^void start_thread(void (*function)(void)) {$/;"	f
+wc	read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+wid	read_write.c	/^int wid = 0;$/;"	v
+writer_entry	read_write.c	/^void writer_entry() {$/;"	f
+writer_exit	read_write.c	/^void writer_exit() {$/;"	f
+writer_func	read_write.c	/^void writer_func() {$/;"	f
+wsem	read_write.c	/^Sem_t* wsem;$/;"	v
+wwc	read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+yield	threads.h	/^void yield() {$/;"	f
