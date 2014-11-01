@@ -1,8 +1,14 @@
+// Project 2 submission
+// Group members: 
+//   1. Hongxiang Wang
+//   2. Lei Chen
+
 #include "sem.h"
 #include <stdio.h>
 #include <string.h>
 
 #define BUFFER_SIZE 2
+#define WAIT_TIME 1000000
 
 extern TCB_t* RunQ;
 
@@ -101,7 +107,7 @@ void reader_func() {
     while(1) {
         reader_entry();
         printf("reader %d: reads %d\n", id, buff);
-        usleep(1000000);
+        usleep(WAIT_TIME);
         yield();
         reader_exit();
     }
@@ -114,7 +120,7 @@ void writer_func() {
         writer_entry();
         printf("writer %d: writes %d\n", id, inc);
         buff = inc++;
-        usleep(1000000);
+        usleep(WAIT_TIME);
         yield();
         writer_exit();
     }
