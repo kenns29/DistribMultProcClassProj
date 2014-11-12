@@ -1,0 +1,11 @@
+#include "sem.h"
+
+
+typedef struct MSG{
+  int msg[10];
+}Message;
+
+typedef struct{
+  Message msgs[10];
+}Port;
+
