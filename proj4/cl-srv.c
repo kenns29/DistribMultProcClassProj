@@ -19,20 +19,22 @@ void server(){
 
     Message msg;
     initMsg(&msg);
-	
+
     while(1){
-        recv(&ports[SERVER_PORT], &msg);
         printf("################################\n");
-        printf("In Server - Received Message From Client:\n");
+        printf("In Server - before receiving msg\n");
+        recv(&ports[SERVER_PORT], &msg);
+        printf("In Server - Received Message From Client: %d\n", msg.recv_port);
         printMsg(msg);
-        
+
         int recv_port = msg.recv_port;
         int req_type = msg.req_type;
         switch (req_type){
             case REQ_TYPE_GET:
-            		printf("Sending Message to Client:\n");
-        				printMsg(table);
-        				usleep(1000000);
+                table.recv_port = recv_port;
+                printf("Sending Message to Client:\n");
+                printMsg(table);
+                usleep(1000000);
                 send(&ports[recv_port], table);
                 break;
             case REQ_TYPE_ADD:
@@ -44,9 +46,10 @@ void server(){
                         strcpy(table.strs[i], msg.strs[i]);
                     }
                 }
+                table.recv_port = recv_port;
                 printf("Sending Message to Client:\n");
-        				printMsg(table);
-        				usleep(1000000);
+                printMsg(table);
+                usleep(1000000);
                 send(&ports[recv_port], table);
                 break;
             case REQ_TYPE_DEL:
@@ -55,9 +58,10 @@ void server(){
                         table.index[i] = 0;
                     }
                 }
+                table.recv_port = recv_port;
                 printf("Sending Message to Client:\n");
-        				printMsg(table);
-        				usleep(1000000);
+                printMsg(table);
+                usleep(1000000);
                 send(&ports[recv_port], table);
                 break;
         }
@@ -69,7 +73,7 @@ void server(){
 
 void client(int id){
     char* preStr[10];
-    
+
     preStr[0] = "pre-defined string 0";
     preStr[1] = "pre-defined string 1";
     preStr[2] = "pre-defined string 2";
@@ -87,9 +91,11 @@ void client(int id){
     initMsg(&msg);
 
     while(1){
+        printf("################################\n");
+        printf("In Client %d\n", id);
         msg.recv_port = id;
 
-        int type = rand() ^ 1;
+        int type = 1;//rand() & 1;
         if (type == 1) {
             msg.req_type = REQ_TYPE_ADD;
         } else {
@@ -108,14 +114,12 @@ void client(int id){
         msg.size[index] = size;
 
         strcpy(msg.strs[index], preStr[strIndex]);
-            
-        printf("################################\n");
-        printf("In Client %d\n", id);
+
         printf("Sending Message to Server:\n");
         printMsg(msg);
         usleep(1000000);
         send(&ports[SERVER_PORT], msg);
-        recv(&ports[SERVER_PORT], &msg);
+        recv(&ports[id], &msg);
     }
 }
 
@@ -126,16 +130,15 @@ void client3(){
     initMsg(&msg);
 
     while(1){
-        msg.recv_port = 3;
-        msg.req_type = REQ_TYPE_GET;
-
-				printf("################################\n");
+        printf("################################\n");
         printf("In Client 3\n");
         printf("Sending Message to Server:\n");
+        msg.recv_port = 3;
+        msg.req_type = REQ_TYPE_GET;
         printMsg(msg);
         usleep(1000000);
         send(&ports[SERVER_PORT], msg);
-        recv(&ports[SERVER_PORT], &msg);
+        recv(&ports[3], &msg);
         printf("Received Message:\n");
         printMsg(msg);
     }
@@ -150,11 +153,11 @@ void client2() {
 
 int main(int argc, char** argv){
     srand(time(NULL));
-    
+
     initSems();
     initPorts(ports);
     InitQ(&RunQ);
-		
+
     start_thread(server);
     start_thread(client1);
     start_thread(client2);

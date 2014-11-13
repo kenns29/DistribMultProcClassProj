@@ -87,25 +87,26 @@ void printMsg(Message msg){
     char* strs[10];
     switch(msg.req_type) {
         case REQ_TYPE_GET:
-            printf("REQ_GET\n");
+            printf("REQ_GET");
             break;
         case REQ_TYPE_ADD:
-            printf("REQ_ADD\n");
+            printf("REQ_ADD");
             break;
         case REQ_TYPE_MOD:
-            printf("REQ_MOD\n");
+            printf("REQ_MOD");
             break;
         case REQ_TYPE_DEL:
-            printf("REQ_DEL\n");
+            printf("REQ_DEL");
             break;
     }
+    printf(", port = %d\n", msg.recv_port);
     printf("Indexes: ");
     for	(i = 0; i < 10; i++){
     	printf("%d ", msg.index[i]);
     }
     printf("\n");
     for (i = 0; i < 10; i++) {
-        if (msg.index >= 0) {
+        if (msg.index[i] != 0) {
             printf("%d: %s\n", i, msg.strs[i]);
         }
     }
@@ -157,8 +158,8 @@ void copyMsg(Message from, Message *to){
         if (from.size[i] > to->size[i]) {
             to->strs[i] = (char*)realloc(to->strs[i], from.size[i]);
             to->size[i] = from.size[i];
-            strcpy(to->strs[i], from.strs[i]);
-        }
+        } 
+        strcpy(to->strs[i], from.strs[i]);
     }
 }
 
@@ -192,9 +193,4 @@ void recv(Port *port, Message *msg){
     V(mutex);
     V(fullSem);
     yield();
-
 }
-
-
-
-

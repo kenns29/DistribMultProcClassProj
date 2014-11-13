@@ -11,8 +11,8 @@ void InitQ (TCB_t** head) {
 void AddQ(TCB_t** head, TCB_t* item) {
     if (NULL == (*head)) {
         (*head) = item;
-        item->next = item;
-        item->prev = item;
+        (*head)->next = (*head);
+        (*head)->prev = (*head);
     } else {
         TCB_t* tail = (*head)->prev;
         tail->next = item;
@@ -29,7 +29,7 @@ TCB_t* DelQ(TCB_t** head, int force) {
 
     // check if the queue is of size 1
     if ((*head)->next == (*head)) {
-        TCB_t* ret = NULL;
+        TCB_t* ret = *head;
 
         if (force) {
             ret = (*head);
