@@ -3,7 +3,7 @@
 #define PORT_SIZE  100
 
 
-const int CASE = 2; //2 ,3 
+const int CASE = 2; //1, 2 ,3 
 
 typedef struct MSG{
 	int msg[10];
@@ -32,6 +32,9 @@ Sem_t* getMutex(Port port) {
 
 		case 3:
 			index = port.number/10;
+			break;
+		case 1:
+		default:
 			break;
 	}
 
@@ -69,62 +72,62 @@ Sem_t* getEmptySem(Port port) {
 }
 
 void printMsg(Message msg){
-  int i ;
-  for(i = 0; i < 10; i++){
-    printf("%d ", msg.msg[i]);
-  }
-  printf("\n");
+	int i ;
+	for(i = 0; i < 10; i++){
+		printf("%d ", msg.msg[i]);
+	}
+	printf("\n");
 }
 
 
 void initMsg(Message *msg){
-  int i;
-  for(i = 0; i < 10; i++){
-    msg->msg[i] = 0;
-  }
+	int i;
+	for(i = 0; i < 10; i++){
+		msg->msg[i] = 0;
+	}
 }
 
 void initPorts(Port ports[]){
-  int i;
-  
-  for(i = 0; i < PORT_SIZE; i ++){
-    ports[i].in = 0;
-    ports[i].out = 0;
-    ports[i].number = i;
-    int j;
-    
-    for(j = 0; j < MSG_SIZE; j++){
-      initMsg(&ports[i].msgs[j]);
-    }
-  }
+	int i;
+
+	for(i = 0; i < PORT_SIZE; i ++){
+		ports[i].in = 0;
+		ports[i].out = 0;
+		ports[i].number = i;
+		int j;
+
+		for(j = 0; j < MSG_SIZE; j++){
+			initMsg(&ports[i].msgs[j]);
+		}
+	}
 }
 
 void initSems(){
 	int i;
-	
+
 	for(i=0; i < PORT_SIZE; i++){
 		mutexes[i] = CreateSem(1);
 		emptySems[i] = CreateSem(0);
 		fullSems[i] = CreateSem(MSG_SIZE);
 	}
-       
+
 }
 
 void copyMsg(Message from, Message *to){
-  int i;
-  for(i = 0; i < MSG_SIZE; i++){
-    to->msg[i] = from.msg[i];
-  }
+	int i;
+	for(i = 0; i < MSG_SIZE; i++){
+		to->msg[i] = from.msg[i];
+	}
 }
 
 void send(Port *port, Message msg){
 	Sem_t* mutex = getMutex(*port);
 	Sem_t* fullSem = getFullSem(*port);
 	Sem_t* emptySem = getEmptySem(*port);
-      
+
 	P(fullSem);
 	P(mutex);
-       
+
 	copyMsg(msg, &port->msgs[port->in]);
 	port->in = (port->in + 1) % MSG_SIZE;
 
@@ -134,21 +137,17 @@ void send(Port *port, Message msg){
 }
 
 void recv(Port *port, Message *msg){
-  
-  Sem_t *mutex = getMutex(*port);
-  Sem_t *fullSem = getFullSem(*port);
-  Sem_t *emptySem = getEmptySem(*port);
 
-  P(emptySem);
-  P(mutex);
-  copyMsg(port->msgs[port->out], msg);
-  port->out = (port->out + 1) % MSG_SIZE;
+	Sem_t *mutex = getMutex(*port);
+	Sem_t *fullSem = getFullSem(*port);
+	Sem_t *emptySem = getEmptySem(*port);
 
-  V(mutex);
-  V(fullSem);
-  yield();
+	P(emptySem);
+	P(mutex);
+	copyMsg(port->msgs[port->out], msg);
+	port->out = (port->out + 1) % MSG_SIZE;
+
+	V(mutex);
+	V(fullSem);
+	yield();
 }
-
-
-
-

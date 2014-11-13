@@ -1,0 +1,62 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AddQ	q.h	/^void AddQ(TCB_t** head, TCB_t* item) {$/;"	f
+CASE	msgs.h	/^const int CASE = 2; \/\/2 ,3 $/;"	v
+CreateSem	sem.h	/^Sem_t* CreateSem(int value) {$/;"	f
+DelQ	q.h	/^TCB_t* DelQ(TCB_t** head, int force) {$/;"	f
+InitQ	q.h	/^void InitQ (TCB_t** head) {$/;"	f
+MSG	msgs.h	/^typedef struct MSG{$/;"	s
+MSG_SIZE	msgs.h	2;"	d
+Message	msgs.h	/^}Message;$/;"	t	typeref:struct:MSG
+P	sem.h	/^void P(Sem_t* sem)  {$/;"	f
+PORT_SIZE	msgs.h	3;"	d
+Port	msgs.h	/^}Port;$/;"	t	typeref:struct:__anon1
+PrintQ	q.h	/^void PrintQ(TCB_t **head) {$/;"	f
+RotateQ	q.h	/^void RotateQ(TCB_t** head)  {$/;"	f
+RunQ	threads.h	/^TCB_t* RunQ;$/;"	v
+SERVER_PORT	msgs_test.c	6;"	d	file:
+STACK_SIZE	q.h	4;"	d
+Sem_t	sem.h	/^} Sem_t;$/;"	t	typeref:struct:Semaphore
+Semaphore	sem.h	/^typedef struct Semaphore {$/;"	s
+TCB	TCB.h	/^typedef struct TCB {$/;"	s
+TCB_t	TCB.h	/^} TCB_t;$/;"	t	typeref:struct:TCB
+V	sem.h	/^void V(Sem_t * sem)  {$/;"	f
+_TCB_H_	TCB.h	2;"	d
+client	msgs_test.c	/^void client(int client_no\/*cannot be 80*\/){$/;"	f
+client1	msgs_test.c	/^void client1(){$/;"	f
+client2	msgs_test.c	/^void client2(){$/;"	f
+client3	msgs_test.c	/^void client3(){$/;"	f
+context	TCB.h	/^    ucontext_t context;$/;"	m	struct:TCB
+copyMsg	msgs.h	/^void copyMsg(Message from, Message *to){$/;"	f
+count	sem.h	/^    int count;$/;"	m	struct:Semaphore
+emptySems	msgs.h	/^Sem_t *emptySems[PORT_SIZE];$/;"	v
+fullSems	msgs.h	/^Sem_t *fullSems[PORT_SIZE];$/;"	v
+getEmptySem	msgs.h	/^Sem_t* getEmptySem(Port port) {$/;"	f
+getFullSem	msgs.h	/^Sem_t* getFullSem(Port port) {$/;"	f
+getMutex	msgs.h	/^Sem_t* getMutex(Port port) {$/;"	f
+in	msgs.h	/^	int in;$/;"	m	struct:__anon1
+initMsg	msgs.h	/^void initMsg(Message *msg){$/;"	f
+initPorts	msgs.h	/^void initPorts(Port ports[]){$/;"	f
+initSems	msgs.h	/^void initSems(){$/;"	f
+init_TCB	TCB.h	/^void init_TCB (TCB_t *tcb, void *function, void *stackP, int stack_size)$/;"	f
+main	msgs_test.c	/^int main(int argc, char **argv){$/;"	f
+msg	msgs.h	/^	int msg[10];$/;"	m	struct:MSG
+msgs	msgs.h	/^	Message msgs[MSG_SIZE];$/;"	m	struct:__anon1
+mutexes	msgs.h	/^Sem_t *mutexes[PORT_SIZE];$/;"	v
+next	TCB.h	/^    struct TCB* next;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+number	msgs.h	/^	int number;$/;"	m	struct:__anon1
+out	msgs.h	/^	int out;$/;"	m	struct:__anon1
+ports	msgs.h	/^Port ports[PORT_SIZE];$/;"	v
+prev	TCB.h	/^    struct TCB* prev;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+printMsg	msgs.h	/^void printMsg(Message msg){$/;"	f
+q	sem.h	/^    TCB_t* q;$/;"	m	struct:Semaphore
+recv	msgs.h	/^void recv(Port *port, Message *msg){$/;"	f
+run	threads.h	/^void run() {$/;"	f
+send	msgs.h	/^void send(Port *port, Message msg){$/;"	f
+server	msgs_test.c	/^void server(){$/;"	f
+start_thread	threads.h	/^void start_thread(void (*function)(void)) {$/;"	f
+yield	threads.h	/^void yield() {$/;"	f
