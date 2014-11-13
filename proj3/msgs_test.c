@@ -1,31 +1,88 @@
 #include "msgs.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
+#define SERVER_PORT 80
+extern Port ports[];
+extern TCB_t *RunQ;
+
+void server();
+void client(int);
+
+void client1();
+void client2();
+void client3();
 
 int main(int argc, char **argv){
-  extern Port ports[];
+  
   
   initSems();
   
   initPorts(ports);
-
-  Message sendMsg;
-  Message recvMsg;
-  
-  int i;
- 
-  for(i =0; i < 10; i++){
-    sendMsg.msg[i] = i;
-  }
-
-  printMsg(ports[0].msgs[0]);
-  send(&ports[0], sendMsg);
-  
-  recv(ports[0], &recvMsg);
-   
-  for(i =0; i < 10; i++){
-    printf("%d\n", recvMsg.msg[i]);
-  }
+		
+	InitQ(&RunQ);
+	start_thread(server);
+	start_thread(client1);
+	start_thread(client2);
+	start_thread(client3);
+	
+	run();	
+	
   return 0;
+}
+
+void server(){
+	Message msg;
+	while(1){
+		recv(ports[SERVER_PORT], &msg);
+		int client_port = msg.msg[0];
+		int i;
+		for(i=1; i<10;i++){
+			msg.msg[i] = 2;
+		}
+		printf("##################\n");
+		printf("\tIn Server\n");
+		printMsg(msg);
+		send(&ports[client_port], msg); 
+	}
+}
+
+void client(int client_no/*cannot be 80*/){
+	int port_no = client_no;
+	Message send_msg;
+	Message recv_msg;
+	send_msg.msg[0] = port_no;
+	int i;
+	srand(time(NULL));
+	for(i = 1; i< 10; i++){
+		send_msg.msg[i] = 1; 
+	}
+	send(&ports[port_no], send_msg);
+	recv(ports[port_no], &recv_msg);
+	printf("##################\n");
+	printf("\tIn Client %d\n", client_no);
+	printMsg(recv_msg);  
+}
+
+void client1(){
+	while(1){
+		client(1);
+		usleep(1000000);
+		yield();
+	}
+}
+void client2(){
+	while(1){
+		client(2);
+		usleep(1000000);
+		yield();
+	}
+}
+void client3(){
+	while(1){
+		client(3);
+		usleep(1000000);
+		yield();
+	}
 }

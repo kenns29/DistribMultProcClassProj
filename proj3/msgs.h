@@ -71,8 +71,9 @@ Sem_t* getEmptySem(Port port) {
 void printMsg(Message msg){
   int i ;
   for(i = 0; i < 10; i++){
-    printf("%d\n", msg.msg[i]);
+    printf("%d ", msg.msg[i]);
   }
+  printf("\n");
 }
 
 
@@ -126,7 +127,6 @@ void send(Port *port, Message msg){
        
 	copyMsg(msg, &port->msgs[port->in]);
 	port->in = (port->in + 1) % MSG_SIZE;
-	usleep(1000000);
 
 	V(mutex);
 	V(emptySem);
@@ -143,7 +143,6 @@ void recv(Port port, Message *msg){
   P(mutex);
   copyMsg(port.msgs[port.out], msg);
   port.out = (port.out + 1) % MSG_SIZE;
-  usleep(1000000);
 
   V(mutex);
   V(fullSem);
