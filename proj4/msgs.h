@@ -1,19 +1,35 @@
 #include "sem.h"
 #define MSG_SIZE  10
 #define PORT_SIZE  100
-#define REQ_NUM 4
 
-unsigned int init_buffer_size = 100;
+#define SEM_CASE = 2; //2 ,3 
 
-const int CASE = 2; //2 ,3 
+#define REQ_TYPE_GET 0
+// get the whole table
+// int count;
+//      int index;
+//      char* str; 
+
+#define REQ_TYPE_ADD 1
+// add one string to the table
+// int index;
+//      char* str;
+
+#define REQ_TYPE_MOD 2
+// modify one string in the table
+// int index;
+//      char* str;
+
+#define REQ_TYPE_DEL 3
+// delete one string in the table
+// int index;
+
 
 /*Message structure that contains the pseudo protocol*/
 typedef struct MSG{
-    char *msg;
-    unsigned int size;
     int recv_port;
-    int request_type; /*0->print, 1->printAll, 2->modify, 3->delete*/
-    unsigned int message_index; 
+    int req_type;
+    void* req_data;
 }Message;
 
 typedef struct{
@@ -32,7 +48,7 @@ Sem_t *emptySems[PORT_SIZE];
 
 Sem_t* getMutex(Port port) {
     int index = 0;
-    switch (CASE) {
+    switch (SEM_CASE) {
         case 2:
             index = port.number;
             break;	
@@ -47,7 +63,7 @@ Sem_t* getMutex(Port port) {
 
 Sem_t* getFullSem(Port port) {
     int index = 0;
-    switch (CASE) {
+    switch (SEM_CASE) {
         case 3:
             index = port.number/10;
             break;
@@ -62,7 +78,7 @@ Sem_t* getFullSem(Port port) {
 
 Sem_t* getEmptySem(Port port) {
     int index = 0;
-    switch (CASE) {
+    switch (SEM_CASE) {
         case 3:
             index = port.number/10;
             break;
@@ -76,7 +92,43 @@ Sem_t* getEmptySem(Port port) {
 }
 
 void printMsg(Message msg){
-    printf("%s\n", msg.msg); 
+    switch(msg->req_type) {
+        case REQ_TYPE_GET:
+            // int count;
+            //      int index;
+            //      int size;
+            //      char* str; 
+
+            void* cur = msg->req_data;
+            int count = *((int*)cur);
+            cur += sizeof(int);
+            printf("REQ_GET: count = %d\n", count);
+        
+            for (int i = 0; i < count; i++) {
+                int index = *((int*)cur);
+                cur += sizeof(int);
+                int size =  *((int*)cur);
+                cur += sizeof(int);
+                printf("%d:%s\n", i, cur);
+                cur += sizeof(char) * size;
+            }
+                
+            break;
+        case REQ_TYPE_ADD:
+            // int index;
+            //      int size;
+            //      char* str;
+            break;
+        case REQ_TYPE_MOD:
+            // int index;
+            //      int size;
+            //      char* str;
+            break;
+        case REQ_TYPE_DEL:
+            // int index;
+            break;
+        default:
+    }
 }
 
 void initMsg(Message *msg){

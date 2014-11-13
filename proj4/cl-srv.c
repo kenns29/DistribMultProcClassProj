@@ -3,11 +3,9 @@
 #include <string.h>
 #include <time.h>
 #include "msgs.h"
+
 #define SERVER_PORT 80
-#define REQ_PRINT 0
-#define REQ_PRINT_ALL 1
-#define REQ_MOD 2
-#define REQ_DEL 3
+
 #define SERVER_TABLE_SIZE 10
 
 extern Port ports[];
