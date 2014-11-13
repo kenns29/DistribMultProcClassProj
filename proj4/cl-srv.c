@@ -11,7 +11,7 @@ extern TCB_t *RunQ;
 extern unsigned int init_buffer_size;
 
 void server();
-void client();
+void client1();
 int main(int argc, char** argv){
     srand(time(NULL));
     initSems();
@@ -76,6 +76,7 @@ void server(){
                 send(&ports[client_port], msg);
                 break;
         }
+
     }
 }
 
@@ -125,6 +126,7 @@ void client1(){
             free(send_msg.msg);
             break;
     }
+
 }
 
 
