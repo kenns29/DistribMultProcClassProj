@@ -69,6 +69,14 @@ Sem_t* getEmptySem(Port* port) {
 }
 
 
+void initPorts(Port ports[]){
+  int i;
+  for(i = 0; i < PORT_SIZE; i ++){
+    ports[i].in = 0;
+    ports[i].out = 0;
+    ports[i].number = i;
+  }
+}
 void initSems(Sem_t **fullSems, Sem_t **emptySems[], Sem_t **mutexes){
 	int i;
 
@@ -98,10 +106,25 @@ void sent(Port* port, Message *msg){
 	V(mutex);
 	V(emptySem);
 
-	yield();
 }
 
-void recv(Port*port, Message *msg){
+void recv(Port*port, Message **msg){
+  if(NULL == port || NULL == msg){
+    return;
+  }
+  Sem_t *mutex = getMutex(port);
+  Sem_t *fullSem = getFullSem(port);
+  Sem_t *emptySem = getEmptySem(port);
+
+  P(emptySem);
+  P(mutex);
+
+  *msg = port->msgs[port->out];
+  port->out = (port->out + 1) % MSG_SIZE;
+  usleep(1000000);
+
+  V(mutex);
+  V(fullSem);
   
 }
 
