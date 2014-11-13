@@ -21,9 +21,8 @@ void server(){
     initMsg(&msg);
 
     while(1){
-        printf("################################\n");
-        printf("In Server - before receiving msg\n");
         recv(&ports[SERVER_PORT], &msg);
+        printf("################################\n");
         printf("In Server - Received Message From Client: %d\n", msg.recv_port);
         printMsg(msg);
 
@@ -35,13 +34,15 @@ void server(){
                 printf("Sending Message to Client:\n");
                 printMsg(table);
                 usleep(1000000);
-                send(&ports[recv_port], table);
+                send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_ADD:
                 for (i = 0; i < 10; i++) {
                     if (msg.index[i] != 0) {
+                        table.index[i] = 1;
                         if (table.size[i] < msg.size[i]) {
                             table.strs[i] = (char*)realloc(table.strs[i], msg.size[i]);
+                            memset(table.strs[i], 0, msg.size[i]);
                         }
                         strcpy(table.strs[i], msg.strs[i]);
                     }
@@ -50,7 +51,7 @@ void server(){
                 printf("Sending Message to Client:\n");
                 printMsg(table);
                 usleep(1000000);
-                send(&ports[recv_port], table);
+                send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_DEL:
                 for (i = 0; i < 10; i++) {
@@ -62,7 +63,7 @@ void server(){
                 printf("Sending Message to Client:\n");
                 printMsg(table);
                 usleep(1000000);
-                send(&ports[recv_port], table);
+                send(&ports[recv_port], &table);
                 break;
         }
 
@@ -115,10 +116,11 @@ void client(int id){
 
         strcpy(msg.strs[index], preStr[strIndex]);
 
-        printf("Sending Message to Server:\n");
+        printf("in client %d Sending Message to Server:\n", id);
         printMsg(msg);
         usleep(1000000);
-        send(&ports[SERVER_PORT], msg);
+        printf(" - - - - - client 1/2 send  msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg.size[0], msg.size[1], msg.size[2], msg.size[3], msg.size[4], msg.size[5], msg.size[6], msg.size[7], msg.size[8], msg.size[9]);
+        send(&ports[SERVER_PORT], &msg);
         recv(&ports[id], &msg);
     }
 }
@@ -137,9 +139,10 @@ void client3(){
         msg.req_type = REQ_TYPE_GET;
         printMsg(msg);
         usleep(1000000);
-        send(&ports[SERVER_PORT], msg);
+        send(&ports[SERVER_PORT], &msg);
         recv(&ports[3], &msg);
-        printf("Received Message:\n");
+        printf(" - - - - - client 3 msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg.size[0], msg.size[1], msg.size[2], msg.size[3], msg.size[4], msg.size[5], msg.size[6], msg.size[7], msg.size[8], msg.size[9]);
+        printf("in client 3, Received Message:\n");
         printMsg(msg);
     }
 }
