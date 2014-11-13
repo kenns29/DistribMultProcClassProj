@@ -6,8 +6,6 @@
 
 #define SERVER_PORT 80
 
-#define SERVER_TABLE_SIZE 10
-
 extern Port ports[];
 extern TCB_t *RunQ;
 extern unsigned int init_buffer_size;
@@ -16,29 +14,40 @@ void server();
 void client();
 int main(int argc, char** argv){
     srand(time(NULL));
+    initSems();
+    initPorts(ports);
+    InitQ(&RunQ);
+
+    start_thread(server);
+    start_thread(client1);
+    start_thread(client2);
+    start_thread(client3);
+
+    run();	
     return 0;
 }
 
 
 void server(){
     /*create the server table*/
-    char *server_table[10];
     int i;
-    for(i = 0; i < SERVER_TABLE_SIZE; i++){
-        server_table[i] = (char*)malloc(init_buffer_size * sizeof(char));
-        strcpy(server_table[i], "Server Message ");
-        char *temp = (char*)malloc(10*sizeof(char));
-        sprintf(temp, "%d", i);
-        strcat(server_table[i], temp);
-        free(temp);
+
+    int index[10];// 0 = empty, !0 = not empty
+    int size[10];
+    char *strs[10];
+    for (i = 0; i < 10; i++) {
+        msg->index[i] = 0;
+        msg->size[i] = DEFAULT_STR_SIZE;
+        msg->strs[i] = (char*)calloc(DEFAULT_STR_SIZE, sizeof(char));
     }
+
     Message msg;
     initMsg(&msg);
+
     while(1){
         recv(&ports[SERVER_PORT], &msg);
         int client_port = msg.recv_port;
-        int req_index = msg.message_index;
-        int request_type = msg.request_type;
+        int request_type = msg.req_type;
         switch (request_type){
             case REQ_PRINT:
                 if(strlen(server_table[req_index]) == 0){

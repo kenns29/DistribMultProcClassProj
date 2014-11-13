@@ -5,31 +5,19 @@
 #define SEM_CASE = 2; //2 ,3 
 
 #define REQ_TYPE_GET 0
-// get the whole table
-// int count;
-//      int index;
-//      char* str; 
-
 #define REQ_TYPE_ADD 1
-// add one string to the table
-// int index;
-//      char* str;
-
 #define REQ_TYPE_MOD 2
-// modify one string in the table
-// int index;
-//      char* str;
-
 #define REQ_TYPE_DEL 3
-// delete one string in the table
-// int index;
 
+#define DEFAULT_STR_SIZE = 80
 
 /*Message structure that contains the pseudo protocol*/
 typedef struct MSG{
     int recv_port;
     int req_type;
-    void* req_data;
+    int index[10];// 0 = empty, !0 = not empty
+    int size[10];
+    char* strs[10];
 }Message;
 
 typedef struct{
@@ -92,50 +80,41 @@ Sem_t* getEmptySem(Port port) {
 }
 
 void printMsg(Message msg){
-    switch(msg->req_type) {
+    int i;
+    int recv_port;
+    int req_type;
+    int index[10];
+    char* strs[10];
+    switch(msg.req_type) {
         case REQ_TYPE_GET:
-            // int count;
-            //      int index;
-            //      int size;
-            //      char* str; 
-
-            void* cur = msg->req_data;
-            int count = *((int*)cur);
-            cur += sizeof(int);
-            printf("REQ_GET: count = %d\n", count);
-        
-            for (int i = 0; i < count; i++) {
-                int index = *((int*)cur);
-                cur += sizeof(int);
-                int size =  *((int*)cur);
-                cur += sizeof(int);
-                printf("%d:%s\n", i, cur);
-                cur += sizeof(char) * size;
-            }
-                
+            printf("REQ_GET\n");
             break;
         case REQ_TYPE_ADD:
-            // int index;
-            //      int size;
-            //      char* str;
+            printf("REQ_ADD\n");
             break;
         case REQ_TYPE_MOD:
-            // int index;
-            //      int size;
-            //      char* str;
+            printf("REQ_MOD\n");
             break;
         case REQ_TYPE_DEL:
-            // int index;
+            printf("REQ_DEL\n");
             break;
-        default:
+    }
+    for (i = 0; i < 10; i++) {
+        if (msg.index >= 0) {
+            printf("%d: %s\n", i, msg.strs[i]);
+        }
     }
 }
 
 void initMsg(Message *msg){
-    msg->size = init_buffer_size;
-    msg->msg = (char*)malloc(msg->size*sizeof(char));
-    strcpy(msg->msg, "\0");
-    msg->recv_port = 0;
+    int i;
+    msg->recv_port = -1;
+    msg->req_type = REQ_TYPE_GET;
+    for (i = 0; i < 10; i++) {
+        msg->index[i] = 0;// 0 = empty, !0 = not empty
+        msg->size[i] = DEFAULT_STR_SIZE;
+        msg->strs[i] = (char*)calloc(DEFAULT_STR_SIZE, sizeof(char));
+    }
 }
 
 void initPorts(Port ports[]){
@@ -165,11 +144,17 @@ void initSems(){
 }
 
 void copyMsg(Message from, Message *to){
-    to->size = from.size;
+    int i;
     to->recv_port = from.recv_port;
-    strcpy(to->msg, from.msg);
-    to->request_type = from.request_type;
-    to->message_index = from.message_index;
+    to->req_type = from.req_type;
+    for (i = 0; i < 10; i++) {
+        to->index[i] = from.index[i];
+        if (from.size[i] > to->size[i]) {
+            to->strs[i] = (char*)realloc(to->strs[i], from.size[i]);
+            to->size[i] = from.size[i];
+            strcpy(to->strs[i], from.strs[i]);
+        }
+    }
 }
 
 void send(Port *port, Message msg){
