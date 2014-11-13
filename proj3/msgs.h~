@@ -117,6 +117,10 @@ void copyMsg(Message from, Message *to){
 }
 
 void send(Port *port, Message msg){
+
+        printf("HERE\n");
+        printf("port->in = %d\n", port->in);
+	
 	Sem_t* mutex = getMutex(*port);
 	Sem_t* fullSem = getFullSem(*port);
 	Sem_t* emptySem = getEmptySem(*port);
@@ -125,6 +129,8 @@ void send(Port *port, Message msg){
 	P(mutex);
        
 	copyMsg(msg, &port->msgs[port->in]);
+
+	printMsg(port->msgs[port->in]);
 	port->in = (port->in + 1) % MSG_SIZE;
 	usleep(1000000);
 
