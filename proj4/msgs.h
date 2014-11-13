@@ -2,14 +2,14 @@
 #define MSG_SIZE  10
 #define PORT_SIZE  100
 
-#define SEM_CASE = 2; //2 ,3 
+#define SEM_CASE 2 //2 ,3 
 
 #define REQ_TYPE_GET 0
 #define REQ_TYPE_ADD 1
 #define REQ_TYPE_MOD 2
 #define REQ_TYPE_DEL 3
 
-#define DEFAULT_STR_SIZE = 80
+#define DEFAULT_STR_SIZE 80
 
 /*Message structure that contains the pseudo protocol*/
 typedef struct MSG{

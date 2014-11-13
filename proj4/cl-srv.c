@@ -10,8 +10,123 @@ extern Port ports[];
 extern TCB_t *RunQ;
 extern unsigned int init_buffer_size;
 
-void server();
-void client1();
+void server(){
+    /*create the server table*/
+    int i;
+
+    Message table;
+    initMsg(&table);
+
+    Message msg;
+    initMsg(&msg);
+
+    while(1){
+        recv(&ports[SERVER_PORT], &msg);
+        int recv_port = msg.recv_port;
+        int req_type = msg.req_type;
+        switch (req_type){
+            case REQ_TYPE_GET:
+                send(&ports[recv_port], table);
+                break;
+            case REQ_TYPE_ADD:
+                for (i = 0; i < 10; i++) {
+                    if (msg.index[i] != 0) {
+                        if (table.size[i] < msg.size[i]) {
+                            table.strs[i] = (char*)realloc(table.strs[i], msg.size[i]);
+                        }
+                        strcpy(table.strs[i], msg.strs[i]);
+                    }
+                }
+                send(&ports[recv_port], table);
+                break;
+            case REQ_TYPE_DEL:
+                for (i = 0; i < 10; i++) {
+                    if (msg.index[i] != 0) {
+                        table.index[i] = 0;
+                    }
+                }
+                send(&ports[recv_port], table);
+                break;
+        }
+
+    }
+}
+
+
+
+void client(int id){
+    char* preStr[10];
+    
+    preStr[0] = "pre-defined string 0";
+    preStr[1] = "pre-defined string 1";
+    preStr[2] = "pre-defined string 2";
+    preStr[3] = "pre-defined string 3";
+    preStr[4] = "pre-defined string 4";
+    preStr[5] = "pre-defined string 5";
+    preStr[6] = "pre-defined string 6";
+    preStr[7] = "pre-defined string 7";
+    preStr[8] = "pre-defined string 8";
+    preStr[9] = "pre-defined string 9";
+
+    int i;
+
+    Message msg;
+    initMsg(&msg);
+
+    while(1){
+        msg.recv_port = id;
+
+        int type = rand() ^ 1;
+        if (type == 1) {
+            msg.req_type = REQ_TYPE_ADD;
+        } else {
+            msg.req_type = REQ_TYPE_DEL;
+        }
+
+        for (i = 0; i < 10; i ++) {
+            msg.index[i] = 0;
+        }
+
+        int index = rand() % 10;
+        msg.index[index] = 1;
+
+        int strIndex = rand() % 10;
+        int size = strlen(preStr[strIndex]) + 1;
+        msg.size[index] = size;
+
+        strcpy(msg.strs[index], preStr[strIndex]);
+            
+        
+        usleep(1000000);
+        send(&ports[SERVER_PORT], msg);
+        recv(&ports[SERVER_PORT], &msg);
+    }
+}
+
+void client3(){
+    int i;
+
+    Message msg;
+    initMsg(&msg);
+
+    while(1){
+        msg.recv_port = 3;
+        msg.req_type = REQ_TYPE_GET;
+
+        usleep(1000000);
+        send(&ports[SERVER_PORT], msg);
+        recv(&ports[SERVER_PORT], &msg);
+        printMsg(msg);
+    }
+}
+
+void client1() {
+    client(1);
+}
+void client2() {
+    client(2);
+}
+
 int main(int argc, char** argv){
     srand(time(NULL));
     initSems();
@@ -26,107 +141,3 @@ int main(int argc, char** argv){
     run();	
     return 0;
 }
-
-
-void server(){
-    /*create the server table*/
-    int i;
-
-    int index[10];// 0 = empty, !0 = not empty
-    int size[10];
-    char *strs[10];
-    for (i = 0; i < 10; i++) {
-        msg->index[i] = 0;
-        msg->size[i] = DEFAULT_STR_SIZE;
-        msg->strs[i] = (char*)calloc(DEFAULT_STR_SIZE, sizeof(char));
-    }
-
-    Message msg;
-    initMsg(&msg);
-
-    while(1){
-        recv(&ports[SERVER_PORT], &msg);
-        int client_port = msg.recv_port;
-        int request_type = msg.req_type;
-        switch (request_type){
-            case REQ_PRINT:
-                if(strlen(server_table[req_index]) == 0){
-                    strcpy(msg.msg, "Item ");
-                    char *temp = (char*)malloc(10*sizeof(10));
-                    sprintf(temp, "%d", req_index);
-                    strcat(msg.msg, temp);
-                    strcat(msg.msg, " in Server Table is empty");
-                    free(temp);
-                }
-                else{
-                    strcpy(msg.msg, server_table[req_index]);
-                }
-                send(&ports[client_port], msg);
-                break;
-            case REQ_PRINT_ALL:
-                break;
-            case REQ_MOD:
-                strcpy(server_table[req_index], msg);
-                strcpy(msg.msg, "SUCCESS");
-                send(&ports[client_port], msg);
-                break;
-            case REQ_DEL:
-                server_table[req_index][0] = '\0';
-                strcpy(msg.msg, "SUCCESS");
-                send(&ports[client_port], msg);
-                break;
-        }
-
-    }
-}
-
-/*request type*/
-/*0->print, 1->printAll, 2->modify, 3->delete*/
-void client1(){
-    int client_no = 1;
-    Message send_msg;
-    Message recv_msg;
-    const char *client_str[3];
-    client_str[0] = "client 1 str 1";
-    client_str[1] = "client 1 str 2";
-    client_str[2] = "client 1 str 3";
-    int request_type;
-    do{
-        request_type = rand() % REQ_NUM;
-    }while(request_type == REQ_PRINT_ALL);
-
-    switch (request_type){
-        case REQ_MOD:
-            send_msg.message_index = rand() % SERVER_TABLE_SIZE;
-            send_msg.recv_port = client_no;
-            send_msg.msg = (char*)malloc(init_buffer_size* sizeof(char));
-            strcpy(send_msg.msg, client_str[rand()%3]); 
-            send_msg.size = init_buffer_size;
-            send(&ports[SERVER_PORT], send_msg);
-            recv(&ports[send_msg.recv_port], &recv_msg);
-            free(send_msg.msg);
-            break;
-        case REQ_PRINT:
-            send_msg.message_index = rand() % SERVER_TABLE_SIZE;
-            send_msg.recv_port = client_no;
-            send_msg.msg = (char*)calloc(init_buffer_size, sizeof(char));
-            send_msg.size = init_buffer_size;
-            send(&ports[SERVER_PORT], send_msg);
-            recv(&ports[send_msg.recv_port], &recv_msg);
-            printMsg(recv_msg);
-            free(send_msg.msg);
-            break;
-        case REQ_DEL:
-            send_msg.message_index = rand() % SERVER_TABLE_SIZE;
-            send_msg.recv_port = client_no;
-            send_msg.msg = (char*)calloc(init_buffer_size, sizeof(char));
-            send_msg.size = init_buffer_size;
-            send(&ports[SERVER_PORT], send_msg);
-            recv(&ports[send_msg.recv_port], &recv_msg);
-            free(send_msg.msg);
-            break;
-    }
-
-}
-
-

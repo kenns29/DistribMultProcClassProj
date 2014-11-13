@@ -4,8 +4,7 @@
 
 #define REQ_TYPE_GET 0
 #define REQ_TYPE_ADD 1
-#define REQ_TYPE_MOD 2
-#define REQ_TYPE_DEL 3
+#define REQ_TYPE_DEL 2
 
 typedef struct {
     int count;
@@ -27,11 +26,8 @@ void printMsg(Message msg){
         case REQ_TYPE_GET:
             printf("REQ_GET:\n");
             break;
-        case REQ_TYPE_ADD:
-            printf("REQ_ADD:\n");
-            break;
         case REQ_TYPE_MOD:
-            printf("REQ_MOD:\n");
+            printf("REQ_ADD:\n");
             break;
         case REQ_TYPE_DEL:
             printf("REQ_DEL:\n");
