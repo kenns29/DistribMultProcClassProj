@@ -3,7 +3,7 @@
 #define PORT_SIZE  100
 
 
-const int CASE = 1; //2 ,3 
+const int CASE = 2; //2 ,3 
 
 typedef struct MSG{
 	int msg[10];
