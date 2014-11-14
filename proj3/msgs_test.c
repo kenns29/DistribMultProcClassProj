@@ -33,56 +33,68 @@ int main(int argc, char **argv){
 }
 
 void server(){
-	Message msg;
-	while(1){
-		recv(ports[SERVER_PORT], &msg);
-		int client_port = msg.msg[0];
-		int i;
-		for(i=1; i<10;i++){
-			msg.msg[i] = 2;
-		}
-		printf("##################\n");
-		printf("\tIn Server\n");
-		printMsg(msg);
-		send(&ports[client_port], msg); 
-	}
+  Message msg;
+  while(1){
+    recv(&ports[SERVER_PORT], &msg);
+    int client_port = msg.msg[0];
+    printf("##################\n");
+    printf("\tIn Server\n");
+    printf("\tReceived Message from Client %d. Message:\n\t", client_port);
+    printMsg(msg);
+    srand(time(NULL));
+    int i;
+    for(i=1; i<10;i++){
+      msg.msg[i] = rand() % 10;
+    }
+    
+    printf("\tSending Message to Client %d. Message:\n\t", client_port);
+    printMsg(msg);
+    send(&ports[client_port], msg);
+    
+    //yield();
+  }
 }
 
 void client(int client_no/*cannot be 80*/){
-	int port_no = client_no;
-	Message send_msg;
-	Message recv_msg;
-	send_msg.msg[0] = port_no;
-	int i;
-	srand(time(NULL));
-	for(i = 1; i< 10; i++){
-		send_msg.msg[i] = 1; 
-	}
-	send(&ports[port_no], send_msg);
-	recv(ports[port_no], &recv_msg);
-	printf("##################\n");
-	printf("\tIn Client %d\n", client_no);
-	printMsg(recv_msg);  
+  int port_no = client_no;
+  Message send_msg;
+  Message recv_msg;
+  send_msg.msg[0] = port_no;
+  int i;
+  srand(time(NULL));
+  for(i = 1; i< 10; i++){
+    send_msg.msg[i] = rand() % 10; 
+  }
+  printf("##################\n");
+  printf("\tIn Client %d\n", client_no);
+  printf("\tSending Message to Server. Message:\n\t");
+  printMsg(send_msg);
+  send(&ports[SERVER_PORT], send_msg);
+  recv(&ports[port_no], &recv_msg);
+  printf("##################\n");
+  printf("\tIn Client %d\n", client_no);
+  printf("\tReceived Message from Server. Message:\n\t");
+  printMsg(recv_msg);  
 }
 
 void client1(){
 	while(1){
 		client(1);
 		usleep(1000000);
-		yield();
+		//yield();
 	}
 }
 void client2(){
 	while(1){
 		client(2);
 		usleep(1000000);
-		yield();
+		//yield();
 	}
 }
 void client3(){
 	while(1){
 		client(3);
 		usleep(1000000);
-		yield();
+		//yield();
 	}
 }

@@ -130,23 +130,23 @@ void send(Port *port, Message msg){
 
 	V(mutex);
 	V(emptySem);
-
+	yield();
 }
 
-void recv(Port port, Message *msg){
+void recv(Port *port, Message *msg){
   
-  Sem_t *mutex = getMutex(port);
-  Sem_t *fullSem = getFullSem(port);
-  Sem_t *emptySem = getEmptySem(port);
+  Sem_t *mutex = getMutex(*port);
+  Sem_t *fullSem = getFullSem(*port);
+  Sem_t *emptySem = getEmptySem(*port);
 
   P(emptySem);
   P(mutex);
-  copyMsg(port.msgs[port.out], msg);
-  port.out = (port.out + 1) % MSG_SIZE;
+  copyMsg(port->msgs[port->out], msg);
+  port->out = (port->out + 1) % MSG_SIZE;
 
   V(mutex);
   V(fullSem);
-  
+  yield();
 }
 
 

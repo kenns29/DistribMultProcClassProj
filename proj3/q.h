@@ -73,7 +73,7 @@ void PrintQ(TCB_t **head) {
     printf("\n");
 }
 
-void TestQ() {
+/*void TestQ() {
     TCB_t* head;
     TCB_t* tcb;
     void* stack;
@@ -134,7 +134,7 @@ void TestQ() {
     printf("\n- - - - - - - - Delete - - - - - - - - \n");
     DelQ(&head, 0);
     PrintQ(&head);
-}
+    }*/
 
 
 
