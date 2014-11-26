@@ -15,9 +15,17 @@ extern TCB_t *RunQ;
 extern unsigned int init_buffer_size;
 
 void server();
-void client();
+void client1();
 int main(int argc, char** argv){
   srand(time(NULL));
+  initSems();
+  initPorts(ports);
+ 
+  InitQ(&RunQ);
+  start_thread(server);
+  start_thread(client1);
+
+  run();
   return 0;
 }
 
@@ -36,6 +44,7 @@ void server(){
   }
   Message msg;
   initMsg(&msg);
+  
   while(1){
     recv(&ports[SERVER_PORT], &msg);
     int client_port = msg.recv_port;
@@ -59,7 +68,7 @@ void server(){
     case REQ_PRINT_ALL:
       break;
     case REQ_MOD:
-      strcpy(server_table[req_index], msg);
+      strcpy(server_table[req_index], msg.msg);
       strcpy(msg.msg, "SUCCESS");
       send(&ports[client_port], msg);
       break;
@@ -83,40 +92,42 @@ void client1(){
   client_str[1] = "client 1 str 2";
   client_str[2] = "client 1 str 3";
   int request_type;
-  do{
-    request_type = rand() % REQ_NUM;
-  }while(request_type == REQ_PRINT_ALL);
+  while(1){
+    do{
+      request_type = rand() % REQ_NUM;
+    }while(request_type == REQ_PRINT_ALL);
 
-  switch (request_type){
-  case REQ_MOD:
-    send_msg.message_index = rand() % SERVER_TABLE_SIZE;
-    send_msg.recv_port = client_no;
-    send_msg.msg = (char*)malloc(init_buffer_size* sizeof(char));
-    strcpy(send_msg.msg, client_str[rand()%3]); 
-    send_msg.size = init_buffer_size;
-    send(&ports[SERVER_PORT], send_msg);
-    recv(&ports[send_msg.recv_port], &recv_msg);
-    free(send_msg.msg);
-    break;
-  case REQ_PRINT:
-    send_msg.message_index = rand() % SERVER_TABLE_SIZE;
-    send_msg.recv_port = client_no;
-    send_msg.msg = (char*)calloc(init_buffer_size, sizeof(char));
-    send_msg.size = init_buffer_size;
-    send(&ports[SERVER_PORT], send_msg);
-    recv(&ports[send_msg.recv_port], &recv_msg);
-    printMsg(recv_msg);
-    free(send_msg.msg);
-    break;
-  case REQ_DEL:
-    send_msg.message_index = rand() % SERVER_TABLE_SIZE;
-    send_msg.recv_port = client_no;
-    send_msg.msg = (char*)calloc(init_buffer_size, sizeof(char));
-    send_msg.size = init_buffer_size;
-    send(&ports[SERVER_PORT], send_msg);
-    recv(&ports[send_msg.recv_port], &recv_msg);
-    free(send_msg.msg);
-    break;
+    switch (request_type){
+    case REQ_MOD:
+      send_msg.message_index = rand() % SERVER_TABLE_SIZE;
+      send_msg.recv_port = client_no;
+      send_msg.msg = (char*)malloc(init_buffer_size* sizeof(char));
+      strcpy(send_msg.msg, client_str[rand()%3]); 
+      send_msg.size = init_buffer_size;
+      send(&ports[SERVER_PORT], send_msg);
+      recv(&ports[send_msg.recv_port], &recv_msg);
+      free(send_msg.msg);
+      break;
+    case REQ_PRINT:
+      send_msg.message_index = rand() % SERVER_TABLE_SIZE;
+      send_msg.recv_port = client_no;
+      send_msg.msg = (char*)calloc(init_buffer_size, sizeof(char));
+      send_msg.size = init_buffer_size;
+      send(&ports[SERVER_PORT], send_msg);
+      recv(&ports[send_msg.recv_port], &recv_msg);
+      printMsg(recv_msg);
+      free(send_msg.msg);
+      break;
+    case REQ_DEL:
+      send_msg.message_index = rand() % SERVER_TABLE_SIZE;
+      send_msg.recv_port = client_no;
+      send_msg.msg = (char*)calloc(init_buffer_size, sizeof(char));
+      send_msg.size = init_buffer_size;
+      send(&ports[SERVER_PORT], send_msg);
+      recv(&ports[send_msg.recv_port], &recv_msg);
+      free(send_msg.msg);
+      break;
+    }
   }
 }
 
