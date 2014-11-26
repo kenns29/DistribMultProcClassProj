@@ -136,7 +136,6 @@ void client3(){
         usleep(1000000);
         send(&ports[SERVER_PORT], msg);
         recv(&ports[SERVER_PORT], &msg);
-        printf("Received Message:\n");
         printMsg(msg);
     }
 }

@@ -99,11 +99,10 @@ void printMsg(Message msg){
             printf("REQ_DEL\n");
             break;
     }
-    printf("Indexes: ");
+    printf("Indexes: ")
     for	(i = 0; i < 10; i++){
     	printf("%d ", msg.index[i]);
     }
-    printf("\n");
     for (i = 0; i < 10; i++) {
         if (msg.index >= 0) {
             printf("%d: %s\n", i, msg.strs[i]);
