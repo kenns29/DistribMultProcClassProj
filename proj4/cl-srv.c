@@ -74,7 +74,20 @@ void server(){
 		send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_DEL:
-                for (i = 0; i < 10; i++) {
+	        printf("\tREQ TYPE DEL\n");
+		printf("\tDEL Slots: ");
+		found = 0;
+		for(i = 0; i < 10; i++){
+		  if(msg.index[i] != 0){
+		    found = 1;
+		    printf("Slots %d ", i);
+		  }
+		}
+		if(!found)
+		  printf("NONE");
+		printf("\n");
+		
+	        for (i = 0; i < 10; i++) {
                     if (msg.index[i] != 0) {
                         table.index[i] = 0;
                     }
@@ -83,18 +96,7 @@ void server(){
                 table.recv_port = recv_port;
                 //printf("Sending Message to Client:\n");
                 //printMsg(table);
-		printf("\tREQ TYPE DEL\n");
-		printf("\tDEL Slots: ");
-		found = 0;
-		for(i = 0; i < 10; i++){
-		  if(msg.index[i] != 0 && table.index[i] != 0){
-		    found = 1;
-		    printf("Slots %d ", i);
-		  }
-		}
-		if(!found)
-		  printf("NONE");
-		printf("\n");
+		
 		send(&ports[recv_port], &table);
                 break;
         }
