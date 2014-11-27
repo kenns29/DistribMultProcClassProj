@@ -23,17 +23,17 @@ void server(){
     while(1){
         recv(&ports[SERVER_PORT], &msg);
         printf("################################\n");
-        printf("In Server - Received Message From Client: %d\n", msg.recv_port);
+        printf("In Server - Received Message\n");
         printMsg(msg);
 
         int recv_port = msg.recv_port;
         int req_type = msg.req_type;
         switch (req_type){
             case REQ_TYPE_GET:
-                table.recv_port = recv_port;
-                printf("Sending Message to Client:\n");
-                printMsg(table);
                 usleep(1000000);
+                table.recv_port = recv_port;
+                printf("Sending Message to Client: %d\n", recv_port);
+                printMsg(table);
                 send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_ADD:
@@ -47,10 +47,10 @@ void server(){
                         strcpy(table.strs[i], msg.strs[i]);
                     }
                 }
+                usleep(1000000);
                 table.recv_port = recv_port;
                 printf("Sending Message to Client:\n");
                 printMsg(table);
-                usleep(1000000);
                 send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_DEL:
@@ -59,10 +59,10 @@ void server(){
                         table.index[i] = 0;
                     }
                 }
+                usleep(1000000);
                 table.recv_port = recv_port;
                 printf("Sending Message to Client:\n");
                 printMsg(table);
-                usleep(1000000);
                 send(&ports[recv_port], &table);
                 break;
         }
@@ -112,16 +112,20 @@ void client(int id){
 
         int strIndex = rand() % 10;
         int size = strlen(preStr[strIndex]) + 1;
+
+        if (msg.size[index] < size) {
+            msg.strs[index] = (char*)realloc(msg.strs[index], size);
+            memset(msg.strs[index], 0, size);
+        }
+
         msg.size[index] = size;
 
         strcpy(msg.strs[index], preStr[strIndex]);
-
+        usleep(1000000);
         printf("in client %d Sending Message to Server:\n", id);
         printMsg(msg);
-        usleep(1000000);
-        printf(" - - - - - client 1/2 send  msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg.size[0], msg.size[1], msg.size[2], msg.size[3], msg.size[4], msg.size[5], msg.size[6], msg.size[7], msg.size[8], msg.size[9]);
         send(&ports[SERVER_PORT], &msg);
-        recv(&ports[id], &msg);
+        recv(&ports[id], &msg);// to get the result after sending, currently no use
     }
 }
 
@@ -132,16 +136,11 @@ void client3(){
     initMsg(&msg);
 
     while(1){
-        printf("################################\n");
-        printf("In Client 3\n");
-        printf("Sending Message to Server:\n");
         msg.recv_port = 3;
         msg.req_type = REQ_TYPE_GET;
-        printMsg(msg);
         usleep(1000000);
         send(&ports[SERVER_PORT], &msg);
         recv(&ports[3], &msg);
-        printf(" - - - - - client 3 msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg.size[0], msg.size[1], msg.size[2], msg.size[3], msg.size[4], msg.size[5], msg.size[6], msg.size[7], msg.size[8], msg.size[9]);
         printf("in client 3, Received Message:\n");
         printMsg(msg);
     }
@@ -163,8 +162,8 @@ int main(int argc, char** argv){
 
     start_thread(server);
     start_thread(client1);
-    start_thread(client2);
-    start_thread(client3);
+    //start_thread(client2);
+    //start_thread(client3);
 
     run();	
     return 0;

@@ -100,9 +100,14 @@ void printMsg(Message msg){
             break;
     }
     printf(", port = %d\n", msg.recv_port);
-    printf("Indexes: ");
+    printf("Index: ");
     for	(i = 0; i < 10; i++){
-    	printf("%d ", msg.index[i]);
+    	printf("%d  ", msg.index[i]);
+    }
+    printf("\n");
+    printf("size : ");
+    for	(i = 0; i < 10; i++){
+    	printf("%d ", msg.size[i]);
     }
     printf("\n");
     for (i = 0; i < 10; i++) {
@@ -156,11 +161,9 @@ void copyMsg(Message *from, Message *to){
     for (i = 0; i < 10; i++) {
         to->index[i] = from->index[i];
         if (from->size[i] > to->size[i]) {
-            printf(" - - - - - realloc - - - - - %d -> %d \n", to->size[i], from->size[i]);
             //to->strs[i] = (char*)realloc(to->strs[i], from->size[i]);
             free(to->strs[i]);
             to->strs[i] = (char*)calloc(from->size[i], sizeof(char));
-            printf(" - - - - - realloc finished - - - - - \n");
             to->size[i] = from->size[i];
         } 
         strcpy(to->strs[i], from->strs[i]);
@@ -176,12 +179,6 @@ void send(Port *port, Message *msg){
     P(mutex);
 
     copyMsg(msg, &port->msgs[port->in]);
-    if (port->number == 3) {
-        //printf(" - - - - - in recv, prot = 3, msg : %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg->size[0], msg->size[1], msg->size[2], msg->size[3], msg->size[4], msg->size[5], msg->size[6], msg->size[7], msg->size[8], msg->size[9]);
-    } else if (port->number == 1 || port->number == 2) {
-        printf(" - - - - - inside send  msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg->size[0], msg->size[1], msg->size[2], msg->size[3], msg->size[4], msg->size[5], msg->size[6], msg->size[7], msg->size[8], msg->size[9]);
-        printf(" - - - - - in send, prot = 3, port : %d %d %d %d %d %d %d %d %d %d - - - - - -\n", port->msgs[port->in].size[0], port->msgs[port->in].size[1], port->msgs[port->in].size[2], port->msgs[port->in].size[3], port->msgs[port->in].size[4], port->msgs[port->in].size[5], port->msgs[port->in].size[6], port->msgs[port->in].size[7], port->msgs[port->in].size[8], port->msgs[port->in].size[9]);
-    }
     port->in = (port->in + 1) % MSG_SIZE;
 
     V(mutex);
@@ -205,6 +202,3 @@ void recv(Port *port, Message *msg){
     V(fullSem);
     yield();
 }
-
-//printf(" - - - - - in recv, prot = 3, port : %d %d %d %d %d %d %d %d %d %d - - - - - -\n", port->msgs[port->out].size[0], port->msgs[port->out].size[1], port->msgs[port->out].size[2], port->msgs[port->out].size[3], port->msgs[port->out].size[4], port->msgs[port->out].size[5], port->msgs[port->out].size[6], port->msgs[port->out].size[7], port->msgs[port->out].size[8], port->msgs[port->out].size[9]);
-
