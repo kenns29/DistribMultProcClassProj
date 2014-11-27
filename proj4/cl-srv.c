@@ -22,9 +22,6 @@ void server(){
 
     while(1){
         recv(&ports[SERVER_PORT], &msg);
-        //printf("################################\n");
-        //printf("In Server - Received Message\n");
-        //printMsg(msg);
         unsigned int  found;
         int recv_port = msg.recv_port;
         int req_type = msg.req_type;
@@ -34,18 +31,6 @@ void server(){
                 usleep(1000000);
                 printf("Server received GET from client %d\n", recv_port);
                 table.recv_port = recv_port;
-                //printf("Sending Message to Client: %d\n", recv_port);
-                //printMsg(table);
-                //found = 0;
-                //for(i = 0; i < 10; i++){
-                //    if(msg.index[i] != 0){
-                //        found = 1;
-                //        printf("Slot %d ", i);
-                //    }
-                //}
-                //if(!found)
-                //    printf("NONE");
-                //printf("\n");
                 send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_ADD:
@@ -63,9 +48,6 @@ void server(){
                     }
                 }
                 table.recv_port = recv_port;
-                //printf("Sending Message to Client:\n");
-                //printMsg(table);
-                //printf("\tREQ TYPE ADD\n");
                 for (i = 0; i < 10; i++){
                     if(msg.index[i] != 0)
                         printf("\tSlot %d: %s\n", i, msg.strs[i]);
@@ -81,20 +63,6 @@ void server(){
                     }
                 }
                 table.recv_port = recv_port;
-                //printf("Sending Message to Client:\n");
-                //printMsg(table);
-                //printf("\tREQ TYPE DEL\n");
-                //printf("\tDEL Slots: ");
-                //found = 0;
-                //for(i = 0; i < 10; i++){
-                //    if(msg.index[i] != 0 && table.index[i] != 0){
-                //        found = 1;
-                //        printf("Slots %d ", i);
-                //    }
-                //}
-                //if(!found)
-                //    printf("NONE");
-                //printf("\n");
                 send(&ports[recv_port], &table);
                 break;
         }
@@ -167,7 +135,7 @@ void client3(){
     initMsg(&msg);
 
     while(1){
-        int skip = rand() % 10;
+        int skip = rand() % 5;
         if (skip != 0) {
             yield();
             continue;
