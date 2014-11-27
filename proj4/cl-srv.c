@@ -25,15 +25,29 @@ void server(){
         //printf("################################\n");
         //printf("In Server - Received Message\n");
         //printMsg(msg);
-
+	unsigned int  found;
         int recv_port = msg.recv_port;
         int req_type = msg.req_type;
-        switch (req_type){
+	printf("---------------------------------------------------------------\n");
+	printf("Server RECV from Client %d\n", recv_port);
+	switch (req_type){
             case REQ_TYPE_GET:
                 usleep(1000000);
                 table.recv_port = recv_port;
                 //printf("Sending Message to Client: %d\n", recv_port);
                 //printMsg(table);
+		printf("\tREQ TYPE GET\n");
+		printf("\tAvailable Slots: ");
+		found = 0;
+		for(i = 0; i < 10; i++){
+		  if(msg.index[i] != 0){
+		    found = 1;
+		    printf("Slot %d ", i);
+		  }
+		}
+		if(!found)
+		  printf("NONE");
+		printf("\n");
                 send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_ADD:
@@ -52,7 +66,12 @@ void server(){
                 table.recv_port = recv_port;
                 //printf("Sending Message to Client:\n");
                 //printMsg(table);
-                send(&ports[recv_port], &table);
+		printf("\tREQ TYPE ADD\n");
+		for (i = 0; i < 10; i++){
+		  if(msg.index[i] != 0)
+		    printf("\tSlot %d: %s\n", i, msg.strs[i]);
+		}
+		send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_DEL:
                 for (i = 0; i < 10; i++) {
@@ -64,7 +83,19 @@ void server(){
                 table.recv_port = recv_port;
                 //printf("Sending Message to Client:\n");
                 //printMsg(table);
-                send(&ports[recv_port], &table);
+		printf("\tREQ TYPE DEL\n");
+		printf("\tDEL Slots: ");
+		found = 0;
+		for(i = 0; i < 10; i++){
+		  if(msg.index[i] != 0 && table.index[i] != 0){
+		    found = 1;
+		    printf("Slots %d ", i);
+		  }
+		}
+		if(!found)
+		  printf("NONE");
+		printf("\n");
+		send(&ports[recv_port], &table);
                 break;
         }
 
