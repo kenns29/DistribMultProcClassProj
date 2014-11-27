@@ -112,14 +112,17 @@ void client(int id){
 
         int strIndex = rand() % 10;
         int size = strlen(preStr[strIndex]) + 1;
-        msg.size[index] = size;
 
+	msg.size[index] = size;
+	if(size > DEFAULT_STR_SIZE){
+	  msg.strs[index] = realloc(msg.strs[index], size);
+	}
         strcpy(msg.strs[index], preStr[strIndex]);
 
         printf("in client %d Sending Message to Server:\n", id);
         printMsg(msg);
         usleep(1000000);
-        printf(" - - - - - client 1/2 send  msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg.size[0], msg.size[1], msg.size[2], msg.size[3], msg.size[4], msg.size[5], msg.size[6], msg.size[7], msg.size[8], msg.size[9]);
+        //printf(" - - - - - client 1/2 send  msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg.size[0], msg.size[1], msg.size[2], msg.size[3], msg.size[4], msg.size[5], msg.size[6], msg.size[7], msg.size[8], msg.size[9]);
         send(&ports[SERVER_PORT], &msg);
         recv(&ports[id], &msg);
     }
@@ -141,7 +144,7 @@ void client3(){
         usleep(1000000);
         send(&ports[SERVER_PORT], &msg);
         recv(&ports[3], &msg);
-        printf(" - - - - - client 3 msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg.size[0], msg.size[1], msg.size[2], msg.size[3], msg.size[4], msg.size[5], msg.size[6], msg.size[7], msg.size[8], msg.size[9]);
+        //printf(" - - - - - client 3 msg size: %d %d %d %d %d %d %d %d %d %d - - - - - -\n", msg.size[0], msg.size[1], msg.size[2], msg.size[3], msg.size[4], msg.size[5], msg.size[6], msg.size[7], msg.size[8], msg.size[9]);
         printf("in client 3, Received Message:\n");
         printMsg(msg);
     }
