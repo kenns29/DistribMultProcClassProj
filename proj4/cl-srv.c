@@ -1,3 +1,8 @@
+// Project 4 submission
+// Group members: 
+//   1. Hongxiang Wang
+//   2. Lei Chen
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -13,6 +18,7 @@ extern unsigned int init_buffer_size;
 void server(){
     /*create the server table*/
     int i;
+    int slot;
 
     Message table;
     initMsg(&table);
@@ -28,13 +34,12 @@ void server(){
         printf("---------------------------------------------------------------\n");
         switch (req_type){
             case REQ_TYPE_GET:
-                usleep(1000000);
                 printf("Server received GET from client %d\n", recv_port);
                 table.recv_port = recv_port;
+                usleep(1000000);
                 send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_ADD:
-                usleep(1000000);
                 printf("Server received ADD from client %d\n", recv_port);
                 for (i = 0; i < 10; i++) {
                     if (msg.index[i] != 0) {
@@ -52,17 +57,19 @@ void server(){
                     if(msg.index[i] != 0)
                         printf("\tSlot %d: %s\n", i, msg.strs[i]);
                 }
+                usleep(1000000);
                 send(&ports[recv_port], &table);
                 break;
             case REQ_TYPE_DEL:
-                usleep(1000000);
-                printf("Server received DEL from client %d\n", recv_port);
                 for (i = 0; i < 10; i++) {
                     if (msg.index[i] != 0) {
                         table.index[i] = 0;
+                        slot = i;
                     }
                 }
+                printf("Server received DEL slot %d from client %d\n",slot, recv_port);
                 table.recv_port = recv_port;
+                usleep(1000000);
                 send(&ports[recv_port], &table);
                 break;
         }
@@ -140,14 +147,14 @@ void client3(){
             yield();
             continue;
         }
-        usleep(1000000);
         msg.recv_port = 3;
         msg.req_type = REQ_TYPE_GET;
+        usleep(1000000);
         send(&ports[SERVER_PORT], &msg);
+        recv(&ports[3], &msg);
         printf("---------------------------------------------------------------\n");
         printf("client 3 ");
         printMsg(msg);
-        recv(&ports[3], &msg);
     }
 }
 

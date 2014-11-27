@@ -4,64 +4,381 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AddQ	leochen/q.h	/^void AddQ(TCB_t** head, TCB_t* item) {$/;"	f
+AddQ	proj3/q.h	/^void AddQ(TCB_t** head, TCB_t* item) {$/;"	f
+AddQ	proj4/q.h	/^void AddQ(TCB_t** head, TCB_t* item) {$/;"	f
 AddQ	q.h	/^void AddQ(TCB_t** head, TCB_t* item) {$/;"	f
+BUFFER_SIZE	leochen/producer_consumer_test.c	5;"	d	file:
+BUFFER_SIZE	leochen/read_write.c	10;"	d	file:
 BUFFER_SIZE	producer_consumer_test.c	5;"	d	file:
-BUFFER_SIZE	read_write.c	5;"	d	file:
+BUFFER_SIZE	read_write.c	10;"	d	file:
+CASE	proj3/msgs.h	/^const int CASE = 2; \/\/2 ,3 $/;"	v
+CreateSem	leochen/sem.h	/^Sem_t* CreateSem(int value) {$/;"	f
+CreateSem	proj3/sem.h	/^Sem_t* CreateSem(int value) {$/;"	f
+CreateSem	proj4/sem.h	/^Sem_t* CreateSem(int value) {$/;"	f
 CreateSem	sem.h	/^Sem_t* CreateSem(int value) {$/;"	f
+DEFAULT_STR_SIZE	proj4/msgs.h	12;"	d
+DelQ	leochen/q.h	/^TCB_t* DelQ(TCB_t** head, int force) {$/;"	f
+DelQ	proj3/q.h	/^TCB_t* DelQ(TCB_t** head, int force) {$/;"	f
+DelQ	proj4/q.h	/^TCB_t* DelQ(TCB_t** head, int force) {$/;"	f
 DelQ	q.h	/^TCB_t* DelQ(TCB_t** head, int force) {$/;"	f
+InitQ	leochen/q.h	/^void InitQ (TCB_t** head) {$/;"	f
+InitQ	proj3/q.h	/^void InitQ (TCB_t** head) {$/;"	f
+InitQ	proj4/q.h	/^void InitQ (TCB_t** head) {$/;"	f
 InitQ	q.h	/^void InitQ (TCB_t** head) {$/;"	f
+L1	partha/lock_test.c	/^lock_t L1;$/;"	v
+MSG	proj3/msgs.h	/^typedef struct MSG{$/;"	s
+MSG	proj4/msgs.h	/^typedef struct MSG{$/;"	s
+MSG	proj4/test.c	/^typedef struct MSG{$/;"	s	file:
+MSG_SIZE	proj3/msgs.h	2;"	d
+MSG_SIZE	proj4/msgs.h	2;"	d
+Message	proj3/msgs.h	/^}Message;$/;"	t	typeref:struct:MSG
+Message	proj4/msgs.h	/^}Message;$/;"	t	typeref:struct:MSG
+Message	proj4/test.c	/^}Message;$/;"	t	typeref:struct:MSG	file:
+N	partha/prod_cons_m.c	8;"	d	file:
+N	partha/prod_cons_s.c	8;"	d	file:
+P	leochen/sem.h	/^void P(Sem_t* sem)  {$/;"	f
+P	partha/sem.h	/^void P(semaphore_t *sem)$/;"	f
+P	partha/sem_test.c	/^void P(semaphore_t *sem)$/;"	f
+P	proj3/sem.h	/^void P(Sem_t* sem)  {$/;"	f
+P	proj4/sem.h	/^void P(Sem_t* sem)  {$/;"	f
 P	sem.h	/^void P(Sem_t* sem)  {$/;"	f
+PORT_SIZE	proj3/msgs.h	3;"	d
+PORT_SIZE	proj4/msgs.h	3;"	d
+Port	proj3/msgs.h	/^}Port;$/;"	t	typeref:struct:__anon3
+Port	proj4/msgs.h	/^}Port;$/;"	t	typeref:struct:__anon1
+PrintQ	leochen/q.h	/^void PrintQ(TCB_t **head) {$/;"	f
+PrintQ	proj3/q.h	/^void PrintQ(TCB_t **head) {$/;"	f
+PrintQ	proj4/q.h	/^void PrintQ(TCB_t **head) {$/;"	f
 PrintQ	q.h	/^void PrintQ(TCB_t **head) {$/;"	f
+REQ_TYPE_ADD	proj4/msgs.h	8;"	d
+REQ_TYPE_ADD	proj4/test.c	6;"	d	file:
+REQ_TYPE_DEL	proj4/msgs.h	10;"	d
+REQ_TYPE_DEL	proj4/test.c	7;"	d	file:
+REQ_TYPE_GET	proj4/msgs.h	7;"	d
+REQ_TYPE_GET	proj4/test.c	5;"	d	file:
+REQ_TYPE_MOD	proj4/msgs.h	9;"	d
+RequestData	proj4/test.c	/^} RequestData;$/;"	t	typeref:struct:__anon2	file:
+RotateQ	leochen/q.h	/^void RotateQ(TCB_t** head)  {$/;"	f
+RotateQ	proj3/q.h	/^void RotateQ(TCB_t** head)  {$/;"	f
+RotateQ	proj4/q.h	/^void RotateQ(TCB_t** head)  {$/;"	f
 RotateQ	q.h	/^void RotateQ(TCB_t** head)  {$/;"	f
+RunQ	leochen/threads.h	/^TCB_t* RunQ;$/;"	v
+RunQ	proj3/threads.h	/^TCB_t* RunQ;$/;"	v
+RunQ	proj4/threads.h	/^TCB_t* RunQ;$/;"	v
 RunQ	threads.h	/^TCB_t* RunQ;$/;"	v
+SEM_CASE	proj4/msgs.h	5;"	d
+SERVER_PORT	proj3/msgs_test.c	6;"	d	file:
+SERVER_PORT	proj4/cl-srv.c	7;"	d	file:
+SERVER_PORT	proj4/msgs_test.c	6;"	d	file:
+STACK_SIZE	leochen/q.h	4;"	d
+STACK_SIZE	proj3/q.h	4;"	d
+STACK_SIZE	proj4/q.h	4;"	d
 STACK_SIZE	q.h	4;"	d
+Sem_t	leochen/sem.h	/^} Sem_t;$/;"	t	typeref:struct:Semaphore
+Sem_t	proj3/sem.h	/^} Sem_t;$/;"	t	typeref:struct:Semaphore
+Sem_t	proj4/sem.h	/^} Sem_t;$/;"	t	typeref:struct:Semaphore
 Sem_t	sem.h	/^} Sem_t;$/;"	t	typeref:struct:Semaphore
+Semaphore	leochen/sem.h	/^typedef struct Semaphore {$/;"	s
+Semaphore	proj3/sem.h	/^typedef struct Semaphore {$/;"	s
+Semaphore	proj4/sem.h	/^typedef struct Semaphore {$/;"	s
 Semaphore	sem.h	/^typedef struct Semaphore {$/;"	s
 TCB	TCB.h	/^typedef struct TCB {$/;"	s
+TCB	leochen/TCB.h	/^typedef struct TCB {$/;"	s
+TCB	proj3/TCB.h	/^typedef struct TCB {$/;"	s
+TCB	proj4/TCB.h	/^typedef struct TCB {$/;"	s
 TCB_t	TCB.h	/^} TCB_t;$/;"	t	typeref:struct:TCB
+TCB_t	leochen/TCB.h	/^} TCB_t;$/;"	t	typeref:struct:TCB
+TCB_t	proj3/TCB.h	/^} TCB_t;$/;"	t	typeref:struct:TCB
+TCB_t	proj4/TCB.h	/^} TCB_t;$/;"	t	typeref:struct:TCB
+TestQ	leochen/q.h	/^void TestQ() {$/;"	f
 TestQ	q.h	/^void TestQ() {$/;"	f
+V	leochen/sem.h	/^void V(Sem_t * sem)  {$/;"	f
+V	partha/sem.h	/^void V(semaphore_t * sem)$/;"	f
+V	partha/sem_test.c	/^void V(semaphore_t * sem)$/;"	f
+V	proj3/sem.h	/^void V(Sem_t * sem)  {$/;"	f
+V	proj4/sem.h	/^void V(Sem_t * sem)  {$/;"	f
 V	sem.h	/^void V(Sem_t * sem)  {$/;"	f
+WAIT_TIME	leochen/read_write.c	11;"	d	file:
+WAIT_TIME	read_write.c	11;"	d	file:
 _TCB_H_	TCB.h	2;"	d
+_TCB_H_	leochen/TCB.h	2;"	d
+_TCB_H_	proj3/TCB.h	2;"	d
+_TCB_H_	proj4/TCB.h	2;"	d
+buff	leochen/producer_consumer_test.c	/^int buff[BUFFER_SIZE] = {0};$/;"	v
+buff	leochen/read_write.c	/^int buff;$/;"	v
 buff	producer_consumer_test.c	/^int buff[BUFFER_SIZE] = {0};$/;"	v
 buff	read_write.c	/^int buff;$/;"	v
+buff_mon	partha/prod_cons_m.c	/^monitor_t buff_mon;$/;"	v
+buffer	partha/prod_cons_m.c	/^int buffer[N];$/;"	v
+buffer	partha/prod_cons_s.c	/^int buffer[N];$/;"	v
+client	proj3/msgs_test.c	/^void client(int client_no\/*cannot be 80*\/){$/;"	f
+client	proj4/cl-srv.c	/^void client(int id){$/;"	f
+client	proj4/msgs_test.c	/^void client(int client_no\/*cannot be 80*\/){$/;"	f
+client1	proj3/msgs_test.c	/^void client1(){$/;"	f
+client1	proj4/cl-srv.c	/^void client1() {$/;"	f
+client1	proj4/msgs_test.c	/^void client1(){$/;"	f
+client2	proj3/msgs_test.c	/^void client2(){$/;"	f
+client2	proj4/cl-srv.c	/^void client2() {$/;"	f
+client2	proj4/msgs_test.c	/^void client2(){$/;"	f
+client3	proj3/msgs_test.c	/^void client3(){$/;"	f
+client3	proj4/cl-srv.c	/^void client3(){$/;"	f
+client3	proj4/msgs_test.c	/^void client3(){$/;"	f
+cond	partha/sem.h	/^     pthread_cond_t cond;$/;"	m	struct:semaphore_t
+cond	partha/sem_test.c	/^     pthread_cond_t cond;$/;"	m	struct:semaphore_t	file:
+cons	partha/prod_cons_m.c	/^void cons(int *arg)$/;"	f
+cons	partha/prod_cons_s.c	/^void cons(int *arg)$/;"	f
+cons_delay	partha/prod_cons_m.c	/^int in = 0, out = 0, count=0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+cons_delay	partha/prod_cons_s.c	/^int in = 0, out = 0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+consumerFunc	leochen/producer_consumer_test.c	/^void consumerFunc() {$/;"	f
 consumerFunc	producer_consumer_test.c	/^void consumerFunc() {$/;"	f
 context	TCB.h	/^    ucontext_t context;$/;"	m	struct:TCB
+context	leochen/TCB.h	/^    ucontext_t context;$/;"	m	struct:TCB
+context	proj3/TCB.h	/^    ucontext_t context;$/;"	m	struct:TCB
+context	proj4/TCB.h	/^    ucontext_t context;$/;"	m	struct:TCB
+copyMsg	proj3/msgs.h	/^void copyMsg(Message from, Message *to){$/;"	f
+copyMsg	proj4/msgs.h	/^void copyMsg(Message *from, Message *to){$/;"	f
+count	leochen/sem.h	/^    int count;$/;"	m	struct:Semaphore
+count	partha/prod_cons_m.c	/^int in = 0, out = 0, count=0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+count	partha/sem.h	/^     int count;$/;"	m	struct:semaphore_t
+count	partha/sem_test.c	/^     int count;$/;"	m	struct:semaphore_t	file:
+count	proj3/sem.h	/^    int count;$/;"	m	struct:Semaphore
+count	proj4/sem.h	/^    int count;$/;"	m	struct:Semaphore
+count	proj4/test.c	/^    int count;$/;"	m	struct:__anon2	file:
 count	sem.h	/^    int count;$/;"	m	struct:Semaphore
+empty	leochen/producer_consumer_test.c	/^Sem_t* empty;$/;"	v
+empty	partha/prod_cons_m.c	/^monitor_cond_t empty, full;$/;"	v
+empty	partha/prod_cons_s.c	/^semaphore_t empty, full, mutex;$/;"	v
 empty	producer_consumer_test.c	/^Sem_t* empty;$/;"	v
+emptySems	proj3/msgs.h	/^Sem_t *emptySems[PORT_SIZE];$/;"	v
+emptySems	proj4/msgs.h	/^Sem_t *emptySems[PORT_SIZE];$/;"	v
+full	leochen/producer_consumer_test.c	/^Sem_t* full;$/;"	v
+full	partha/prod_cons_m.c	/^monitor_cond_t empty, full;$/;"	v
+full	partha/prod_cons_s.c	/^semaphore_t empty, full, mutex;$/;"	v
 full	producer_consumer_test.c	/^Sem_t* full;$/;"	v
+fullSems	proj3/msgs.h	/^Sem_t *fullSems[PORT_SIZE];$/;"	v
+fullSems	proj4/msgs.h	/^Sem_t *fullSems[PORT_SIZE];$/;"	v
+func1	leochen/user_threads_test.c	/^void func1() {$/;"	f
+func1	partha/race-c.c	/^func1()$/;"	f
+func1	partha/race-p.c	/^func1()$/;"	f
 func1	user_threads_test.c	/^void func1() {$/;"	f
+func2	leochen/user_threads_test.c	/^void func2() {$/;"	f
+func2	partha/race-c.c	/^func2(void* arg)$/;"	f
+func2	partha/race-p.c	/^func2(void* arg)$/;"	f
 func2	user_threads_test.c	/^void func2() {$/;"	f
+func3	leochen/user_threads_test.c	/^void func3() {$/;"	f
 func3	user_threads_test.c	/^void func3() {$/;"	f
+function_1	partha/lock_test.c	/^void function_1(void)$/;"	f
+function_1	partha/sem_test.c	/^void function_1(void)$/;"	f
+function_1	partha/thread_test.c	/^void function_1(int *arg)$/;"	f
+function_2	partha/lock_test.c	/^void function_2(void)$/;"	f
+function_2	partha/sem_test.c	/^void function_2(void)$/;"	f
+function_2	partha/thread_test.c	/^void function_2(int *arg)$/;"	f
+function_3	partha/lock_test.c	/^void function_3(void)$/;"	f
+function_3	partha/sem_test.c	/^void function_3(void)$/;"	f
+function_3	partha/thread_test.c	/^void function_3(int *arg)$/;"	f
+getEmptySem	proj3/msgs.h	/^Sem_t* getEmptySem(Port port) {$/;"	f
+getEmptySem	proj4/msgs.h	/^Sem_t* getEmptySem(Port port) {$/;"	f
+getFullSem	proj3/msgs.h	/^Sem_t* getFullSem(Port port) {$/;"	f
+getFullSem	proj4/msgs.h	/^Sem_t* getFullSem(Port port) {$/;"	f
+getMutex	proj3/msgs.h	/^Sem_t* getMutex(Port port) {$/;"	f
+getMutex	proj4/msgs.h	/^Sem_t* getMutex(Port port) {$/;"	f
+gid	leochen/producer_consumer_test.c	/^int gid = 0;$/;"	v
 gid	producer_consumer_test.c	/^int gid = 0;$/;"	v
+global	leochen/user_threads_test.c	/^int global = 0;$/;"	v
+global	partha/thread_test.c	/^int global=0;$/;"	v
 global	user_threads_test.c	/^int global = 0;$/;"	v
+global_ID	partha/read_write_m.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
+global_ID	partha/read_write_s.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
+in	leochen/producer_consumer_test.c	/^int in;$/;"	v
+in	partha/prod_cons_m.c	/^int in = 0, out = 0, count=0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+in	partha/prod_cons_s.c	/^int in = 0, out = 0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
 in	producer_consumer_test.c	/^int in;$/;"	v
+in	proj3/msgs.h	/^	int in;$/;"	m	struct:__anon3
+in	proj4/msgs.h	/^    int in;$/;"	m	struct:__anon1
+inc	leochen/read_write.c	/^int inc = 0;$/;"	v
 inc	read_write.c	/^int inc = 0;$/;"	v
+index	proj4/msgs.h	/^    int index[10];\/\/ 0 = empty, !0 = not empty$/;"	m	struct:MSG
+index	proj4/test.c	/^    int* index;$/;"	m	struct:__anon2	file:
+initMsg	proj3/msgs.h	/^void initMsg(Message *msg){$/;"	f
+initMsg	proj4/msgs.h	/^void initMsg(Message *msg){$/;"	f
+initPorts	proj3/msgs.h	/^void initPorts(Port ports[]){$/;"	f
+initPorts	proj4/msgs.h	/^void initPorts(Port ports[]){$/;"	f
+initSems	proj3/msgs.h	/^void initSems(){$/;"	f
+initSems	proj4/msgs.h	/^void initSems(){$/;"	f
 init_TCB	TCB.h	/^void init_TCB (TCB_t *tcb, void *function, void *stackP, int stack_size)$/;"	f
+init_TCB	leochen/TCB.h	/^void init_TCB (TCB_t *tcb, void *function, void *stackP, int stack_size)$/;"	f
+init_TCB	proj3/TCB.h	/^void init_TCB (TCB_t *tcb, void *function, void *stackP, int stack_size)$/;"	f
+init_TCB	proj4/TCB.h	/^void init_TCB (TCB_t *tcb, void *function, void *stackP, int stack_size)$/;"	f
+init_lock	partha/lock_test.c	/^void init_lock(lock_t *l)$/;"	f
+init_monitor	partha/monitor.h	/^void init_monitor(monitor_t *M)$/;"	f
+init_monitor_cond	partha/monitor.h	/^void init_monitor_cond(monitor_cond_t *monitor_cond)$/;"	f
+init_sem	partha/sem.h	/^void init_sem(semaphore_t *s, int i)$/;"	f
+init_sem	partha/sem_test.c	/^void init_sem(semaphore_t *s, int i)$/;"	f
+item	leochen/producer_consumer_test.c	/^int item = 0;$/;"	v
 item	producer_consumer_test.c	/^int item = 0;$/;"	v
+item_num	partha/prod_cons_m.c	/^int in = 0, out = 0, count=0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+item_num	partha/prod_cons_s.c	/^int in = 0, out = 0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+lock	partha/lock_test.c	/^void lock(lock_t *l)$/;"	f
+lock_t	partha/lock_test.c	/^typedef pthread_mutex_t lock_t;$/;"	t	file:
+main	leochen/producer_consumer_test.c	/^int main(int argc, char** argv) {$/;"	f
+main	leochen/read_write.c	/^int main(int argc, char** argv) {$/;"	f
+main	leochen/user_threads_test.c	/^int main(int argc, char** argv) {$/;"	f
+main	partha/lock_test.c	/^int main()$/;"	f
+main	partha/prod_cons_m.c	/^int main()$/;"	f
+main	partha/prod_cons_s.c	/^int main()$/;"	f
+main	partha/race-c.c	/^main()$/;"	f
+main	partha/race-p.c	/^main()$/;"	f
+main	partha/read_write_m.c	/^int main()$/;"	f
+main	partha/read_write_s.c	/^int main()$/;"	f
+main	partha/sem_test.c	/^int main()$/;"	f
+main	partha/thread_test.c	/^int main()$/;"	f
 main	producer_consumer_test.c	/^int main(int argc, char** argv) {$/;"	f
+main	proj3/msgs_test.c	/^int main(int argc, char **argv){$/;"	f
+main	proj4/cl-srv.c	/^int main(int argc, char** argv){$/;"	f
+main	proj4/msgs_test.c	/^int main(int argc, char **argv){$/;"	f
+main	proj4/test.c	/^int main(int argc, char** argv){$/;"	f
 main	read_write.c	/^int main(int argc, char** argv) {$/;"	f
 main	user_threads_test.c	/^int main(int argc, char** argv) {$/;"	f
+monitor_cond_t	partha/monitor.h	/^typedef pthread_cond_t monitor_cond_t;$/;"	t
+monitor_entry	partha/monitor.h	/^void monitor_entry(monitor_t *M)$/;"	f
+monitor_exit	partha/monitor.h	/^void monitor_exit(monitor_t *M)$/;"	f
+monitor_signal	partha/monitor.h	/^void monitor_signal(monitor_t *M, monitor_cond_t *monitor_cond)$/;"	f
+monitor_t	partha/monitor.h	/^typedef pthread_mutex_t monitor_t;$/;"	t
+monitor_wait	partha/monitor.h	/^void monitor_wait(monitor_t *M, monitor_cond_t *monitor_cond)$/;"	f
+msg	proj3/msgs.h	/^	int msg[10];$/;"	m	struct:MSG
+msgs	proj3/msgs.h	/^	Message msgs[MSG_SIZE];$/;"	m	struct:__anon3
+msgs	proj4/msgs.h	/^    Message msgs[MSG_SIZE];$/;"	m	struct:__anon1
+mutex	leochen/producer_consumer_test.c	/^Sem_t* mutex;$/;"	v
+mutex	leochen/read_write.c	/^Sem_t* mutex;$/;"	v
+mutex	partha/prod_cons_s.c	/^semaphore_t empty, full, mutex;$/;"	v
+mutex	partha/read_write_s.c	/^semaphore_t r_sem, w_sem, mutex;$/;"	v
+mutex	partha/sem.h	/^     pthread_mutex_t mutex;$/;"	m	struct:semaphore_t
+mutex	partha/sem_test.c	/^     pthread_mutex_t mutex;$/;"	m	struct:semaphore_t	file:
+mutex	partha/sem_test.c	/^semaphore_t mutex;$/;"	v
 mutex	producer_consumer_test.c	/^Sem_t* mutex;$/;"	v
 mutex	read_write.c	/^Sem_t* mutex;$/;"	v
+mutexes	proj3/msgs.h	/^Sem_t *mutexes[PORT_SIZE];$/;"	v
+mutexes	proj4/msgs.h	/^Sem_t *mutexes[PORT_SIZE];$/;"	v
 next	TCB.h	/^    struct TCB* next;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+next	leochen/TCB.h	/^    struct TCB* next;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+next	proj3/TCB.h	/^    struct TCB* next;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+next	proj4/TCB.h	/^    struct TCB* next;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+number	proj3/msgs.h	/^	int number;$/;"	m	struct:__anon3
+number	proj4/msgs.h	/^    int number;$/;"	m	struct:__anon1
+out	leochen/producer_consumer_test.c	/^int out;$/;"	v
+out	partha/prod_cons_m.c	/^int in = 0, out = 0, count=0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+out	partha/prod_cons_s.c	/^int in = 0, out = 0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
 out	producer_consumer_test.c	/^int out;$/;"	v
+out	proj3/msgs.h	/^	int out;$/;"	m	struct:__anon3
+out	proj4/msgs.h	/^    int out;$/;"	m	struct:__anon1
+ports	proj3/msgs.h	/^Port ports[PORT_SIZE];$/;"	v
+ports	proj4/msgs.h	/^Port ports[PORT_SIZE];$/;"	v
 prev	TCB.h	/^    struct TCB* prev;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+prev	leochen/TCB.h	/^    struct TCB* prev;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+prev	proj3/TCB.h	/^    struct TCB* prev;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+prev	proj4/TCB.h	/^    struct TCB* prev;$/;"	m	struct:TCB	typeref:struct:TCB::TCB
+printMsg	proj3/msgs.h	/^void printMsg(Message msg){$/;"	f
+printMsg	proj4/msgs.h	/^void printMsg(Message msg){$/;"	f
+printMsg	proj4/test.c	/^void printMsg(Message msg){$/;"	f
+prod	partha/prod_cons_m.c	/^void prod (int *arg)$/;"	f
+prod	partha/prod_cons_s.c	/^void prod (int *arg)$/;"	f
+prod_delay	partha/prod_cons_m.c	/^int in = 0, out = 0, count=0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+prod_delay	partha/prod_cons_s.c	/^int in = 0, out = 0, item_num=0, prod_delay = 1, cons_delay = 1;$/;"	v
+producerFunc	leochen/producer_consumer_test.c	/^void producerFunc() {$/;"	f
 producerFunc	producer_consumer_test.c	/^void producerFunc() {$/;"	f
+q	leochen/sem.h	/^    TCB_t* q;$/;"	m	struct:Semaphore
+q	proj3/sem.h	/^    TCB_t* q;$/;"	m	struct:Semaphore
+q	proj4/sem.h	/^    TCB_t* q;$/;"	m	struct:Semaphore
 q	sem.h	/^    TCB_t* q;$/;"	m	struct:Semaphore
+r_cond	partha/read_write_m.c	/^monitor_cond_t r_cond, w_cond;$/;"	v
+r_sem	partha/read_write_s.c	/^semaphore_t r_sem, w_sem, mutex;$/;"	v
+rc	leochen/read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+rc	partha/read_write_m.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
+rc	partha/read_write_s.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
 rc	read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+read_write	partha/read_write_m.c	/^monitor_t read_write;$/;"	v
+reader	partha/read_write_m.c	/^void reader(void)$/;"	f
+reader	partha/read_write_s.c	/^void reader(void)$/;"	f
+reader_entry	leochen/read_write.c	/^void reader_entry() {$/;"	f
+reader_entry	partha/read_write_m.c	/^void reader_entry(int ID)$/;"	f
+reader_entry	partha/read_write_s.c	/^void reader_entry(int ID)$/;"	f
 reader_entry	read_write.c	/^void reader_entry() {$/;"	f
+reader_exit	leochen/read_write.c	/^void reader_exit() {$/;"	f
+reader_exit	partha/read_write_m.c	/^void reader_exit(int ID)$/;"	f
+reader_exit	partha/read_write_s.c	/^void reader_exit(int ID)$/;"	f
 reader_exit	read_write.c	/^void reader_exit() {$/;"	f
+reader_func	leochen/read_write.c	/^void reader_func() {$/;"	f
 reader_func	read_write.c	/^void reader_func() {$/;"	f
+recv	proj3/msgs.h	/^void recv(Port *port, Message *msg){$/;"	f
+recv	proj4/msgs.h	/^void recv(Port *port, Message *msg){$/;"	f
+recv_port	proj4/msgs.h	/^    int recv_port;$/;"	m	struct:MSG
+recv_port	proj4/test.c	/^    int recv_port;$/;"	m	struct:MSG	file:
+req_data	proj4/test.c	/^    RequestData req_data;$/;"	m	struct:MSG	file:
+req_type	proj4/msgs.h	/^    int req_type;$/;"	m	struct:MSG
+req_type	proj4/test.c	/^    int req_type;$/;"	m	struct:MSG	file:
+rid	leochen/read_write.c	/^int rid = 0;$/;"	v
 rid	read_write.c	/^int rid = 0;$/;"	v
+rsem	leochen/read_write.c	/^Sem_t* rsem;$/;"	v
 rsem	read_write.c	/^Sem_t* rsem;$/;"	v
+run	leochen/threads.h	/^void run() {$/;"	f
+run	proj3/threads.h	/^void run() {$/;"	f
+run	proj4/threads.h	/^void run() {$/;"	f
 run	threads.h	/^void run() {$/;"	f
+rwc	leochen/read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+rwc	partha/read_write_m.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
+rwc	partha/read_write_s.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
 rwc	read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+semaphore_t	partha/sem.h	/^typedef struct semaphore_t {$/;"	s
+semaphore_t	partha/sem.h	/^} semaphore_t;$/;"	t	typeref:struct:semaphore_t
+semaphore_t	partha/sem_test.c	/^typedef struct semaphore_t {$/;"	s	file:
+semaphore_t	partha/sem_test.c	/^} semaphore_t;$/;"	t	typeref:struct:semaphore_t	file:
+send	proj3/msgs.h	/^void send(Port *port, Message msg){$/;"	f
+send	proj4/msgs.h	/^void send(Port *port, Message *msg){$/;"	f
+server	proj3/msgs_test.c	/^void server(){$/;"	f
+server	proj4/cl-srv.c	/^void server(){$/;"	f
+server	proj4/msgs_test.c	/^void server(){$/;"	f
+size	proj4/msgs.h	/^    int size[10];$/;"	m	struct:MSG
+size	proj4/test.c	/^    int* size;$/;"	m	struct:__anon2	file:
+stack	partha/race-c.c	/^void *stack;$/;"	v
+start_thread	leochen/threads.h	/^void start_thread(void (*function)(void)) {$/;"	f
+start_thread	partha/thread_test.c	/^pthread_t start_thread(void *func, int *arg)$/;"	f
+start_thread	partha/threads.h	/^pthread_t start_thread(void *func, int *arg)$/;"	f
+start_thread	proj3/threads.h	/^void start_thread(void (*function)(void)) {$/;"	f
+start_thread	proj4/threads.h	/^void start_thread(void (*function)(void)) {$/;"	f
 start_thread	threads.h	/^void start_thread(void (*function)(void)) {$/;"	f
+str	proj4/test.c	/^    char** str;$/;"	m	struct:__anon2	file:
+strs	proj4/msgs.h	/^    char* strs[10];$/;"	m	struct:MSG
+unlock	partha/lock_test.c	/^void unlock (lock_t *l)$/;"	f
+w_cond	partha/read_write_m.c	/^monitor_cond_t r_cond, w_cond;$/;"	v
+w_sem	partha/read_write_s.c	/^semaphore_t r_sem, w_sem, mutex;$/;"	v
+wc	leochen/read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+wc	partha/read_write_m.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
+wc	partha/read_write_s.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
 wc	read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+wid	leochen/read_write.c	/^int wid = 0;$/;"	v
 wid	read_write.c	/^int wid = 0;$/;"	v
+writer	partha/read_write_m.c	/^void writer(void)$/;"	f
+writer	partha/read_write_s.c	/^void writer(void)$/;"	f
+writer_entry	leochen/read_write.c	/^void writer_entry() {$/;"	f
+writer_entry	partha/read_write_m.c	/^void writer_entry(int ID)$/;"	f
+writer_entry	partha/read_write_s.c	/^void writer_entry(int ID)$/;"	f
 writer_entry	read_write.c	/^void writer_entry() {$/;"	f
+writer_exit	leochen/read_write.c	/^void writer_exit() {$/;"	f
+writer_exit	partha/read_write_m.c	/^void writer_exit(int ID)$/;"	f
+writer_exit	partha/read_write_s.c	/^void writer_exit(int ID)$/;"	f
 writer_exit	read_write.c	/^void writer_exit() {$/;"	f
+writer_func	leochen/read_write.c	/^void writer_func() {$/;"	f
 writer_func	read_write.c	/^void writer_func() {$/;"	f
+wsem	leochen/read_write.c	/^Sem_t* wsem;$/;"	v
 wsem	read_write.c	/^Sem_t* wsem;$/;"	v
+wwc	leochen/read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+wwc	partha/read_write_m.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
+wwc	partha/read_write_s.c	/^int rwc = 0, wwc = 0, rc = 0, wc = 0, global_ID=0;$/;"	v
 wwc	read_write.c	/^int wc,rc,wwc,rwc;$/;"	v
+x	partha/race-c.c	/^int x=1;$/;"	v
+x	partha/race-p.c	/^int x;$/;"	v
+yield	leochen/threads.h	/^void yield() {$/;"	f
+yield	proj3/threads.h	/^void yield() {$/;"	f
+yield	proj4/threads.h	/^void yield() {$/;"	f
 yield	threads.h	/^void yield() {$/;"	f
