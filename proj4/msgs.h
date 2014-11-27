@@ -87,13 +87,28 @@ void printMsg(Message msg){
     char* strs[10];
     switch(msg.req_type) {
         case REQ_TYPE_GET:
-            printf("GET");
+            printf("GET\n");
+            for (i = 0; i < 10; i++) {
+                if (msg.index[i] != 0) {
+                    printf("\tslot %d: %s\n", i, msg.strs[i]);
+                }
+            }
             break;
         case REQ_TYPE_ADD:
-            printf("ADD");
+            printf("ADD\n");
+            for (i = 0; i < 10; i++) {
+                if (msg.index[i] != 0) {
+                    printf("\tslot %d: %s\n", i, msg.strs[i]);
+                }
+            }
             break;
         case REQ_TYPE_DEL:
-            printf("DEL");
+            printf("DEL\n");
+            for (i = 0; i < 10; i++) {
+                if (msg.index[i] != 0) {
+                    printf("\tslot %d\n", i);
+                }
+            }
             break;
     }
     //printf(", port = %d\n", msg.recv_port);
@@ -106,12 +121,6 @@ void printMsg(Message msg){
     //for	(i = 0; i < 10; i++){
     //	printf("%d ", msg.size[i]);
     //}
-    printf("\n");
-    for (i = 0; i < 10; i++) {
-        if (msg.index[i] != 0) {
-            printf("\tslot %d: %s\n", i, msg.strs[i]);
-        }
-    }
 }
 
 void initMsg(Message *msg){
